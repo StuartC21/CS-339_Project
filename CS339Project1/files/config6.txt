@@ -1,0 +1,956 @@
+!
+upgrade aMx auto
+version 12.2
+no service pad
+service timestamps debug datetime localtime
+service timestamps log datetime localtime
+service password-encryption
+service counters max age 10
+!
+hostname config6
+!
+boot system flash disk0:s72033-advipservicesk9_wan-mz.122-18.SXF8.bin
+logging snmp-authfail
+logging buffered 300000 debugging
+no logging console
+no logging monitor
+enable password cDdCSP1xK cDdCSP1xK
+!
+username cDdCSP1xK privilege 15 password cDdCSP1xK cDdCSP1xK
+aaa new-model
+aaa authentication login default group radius local
+aaa authentication enable default enable
+aaa authorization exec default group radius local 
+aaa accounting update newinfo
+aaa accounting exec default start-stop group radius
+!
+aaa session-id common
+clock timezone CST -6
+clock summer-time cdt recurring
+logging event link-status default
+ip subnet-zero
+!
+ip flow-cache entries 131072
+ip flow-cache timeout active 1
+ip tftp source-interface Loopback0
+ip multicast-routing 
+ip sap cache-timeout 60
+ip telnet source-interface Loopback0
+ip ssh time-out 30
+ip ssh authentication-retries 2
+ip ssh source-interface Loopback0
+ip ssh version 2
+ip domain-list dnGpza8EXIpu6mKMQHYI7zsBHAc
+ip domain-name dnGpza8EXIpu6mKMQHYI7zsBHAc
+ip name-server 179.46.170.106
+ip name-server 164.171.172.193
+ipv6 mfib fhXBwRr3VkLfjPWbvV Vdij30n+1rKuA206 ingress
+udld aggressive
+vtp mode transparent
+mls ip multicast I3fOHPoCFeB2IbA 9
+mls aging fast time 30 threshold 64
+mls netflow usage notify 80 300 
+mls flow ip jgofGyY+p4Bf5b
+mls flow ipv6 jgofGyY+p4Bf5b
+no mls acl 6ZbJ x5kuZn7aJelc
+mls cef error action recover
+!
+redundancy
+ mode r7n
+ main-cpu
+  auto-sync running-config
+  auto-sync standard
+!
+spanning-tree mode RprWC2s39L
+no spanning-tree optimize bpdu transmission
+spanning-tree extend system-id
+spanning-tree vlan 3740-3741 priority 0
+diagnostic cns Xi+wwsW 22CtqmKm0mzZYqHhUHBUZvNITpY
+diagnostic cns subscribe bJpZc2RVilM55l8G1sT6DW80zvQ
+no diagnostic crash
+no errdisable detect cause XSUcAT0WK
+no errdisable detect cause 6sYzJFzQ
+no errdisable detect cause 0g+V27XLl
+errdisable recovery cause udld
+errdisable recovery cause m54tmK003
+errdisable recovery cause Zd9csbZA3CqOmzn1cc
+errdisable recovery cause b1an24t9t8Xyci61X
+errdisable recovery cause VijocvIkw
+errdisable recovery interval 30
+port-channel nW5iN8XwPR load-balance
+!
+vlan internal allocation policy ascending
+vlan dot1q tag native 
+vlan lgMGtlvoN+ Ea5v+QY0C 2000
+!
+vlan 1555
+ name 9zMb3vPvmBgkB7jmETF5OWoif3c
+!
+vlan 1557
+ name XH7Go1zKfKcI+lpSw6FTE7mzHWE
+!
+vlan 3740
+ name CPxAiQtE3mSjKlNArbZA7BkVle
+!
+vlan 3741
+ name nHV1ZUJDMWEwKLyTnsBrrUG7J
+!
+!
+interface Loopback0
+ ip address 176.144.169.40 255.255.255.255
+ ip rip advertise 10
+!
+interface FastEthernet2/1
+ no ip address
+ shutdown
+!
+interface FastEthernet2/2
+ no ip address
+ shutdown
+!
+interface FastEthernet2/3
+ no ip address
+ shutdown
+!
+interface FastEthernet2/4
+ no ip address
+ shutdown
+!
+interface FastEthernet2/5
+ no ip address
+ shutdown
+!
+interface FastEthernet2/6
+ no ip address
+ shutdown
+!
+interface FastEthernet2/7
+ no ip address
+ shutdown
+!
+interface FastEthernet2/8
+ no ip address
+ shutdown
+!
+interface FastEthernet2/9
+ no ip address
+ shutdown
+!
+interface FastEthernet2/10
+ no ip address
+ shutdown
+!
+interface FastEthernet2/11
+ no ip address
+ shutdown
+!
+interface FastEthernet2/12
+ no ip address
+ shutdown
+!
+interface FastEthernet2/13
+ no ip address
+ shutdown
+!
+interface FastEthernet2/14
+ no ip address
+ shutdown
+!
+interface FastEthernet2/15
+ no ip address
+ shutdown
+!
+interface FastEthernet2/16
+ no ip address
+ shutdown
+!
+interface FastEthernet2/17
+ no ip address
+ shutdown
+!
+interface FastEthernet2/18
+ no ip address
+ shutdown
+!
+interface FastEthernet2/19
+ no ip address
+ shutdown
+!
+interface FastEthernet2/20
+ no ip address
+ shutdown
+!
+interface FastEthernet2/21
+ no ip address
+ shutdown
+!
+interface FastEthernet2/22
+ no ip address
+ shutdown
+!
+interface FastEthernet2/23
+ no ip address
+ shutdown
+!
+interface FastEthernet2/24
+ no ip address
+ shutdown
+!
+interface GigabitEthernet3/1
+ description  REMOVED
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport trunk allowed vlan 1555,3740,3741
+ no ip address
+ logging event spanning-tree status
+ logging event GrzmwDbKIVBLZ
+ logging event M6M9lsFZLFTg
+ eUnIlRYUvlavp broadcast level 1.00
+ spanning-tree cost 10
+!
+interface GigabitEthernet3/2
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport trunk allowed vlan none
+ no ip address
+ logging event spanning-tree status
+ logging event GrzmwDbKIVBLZ
+ logging event M6M9lsFZLFTg
+ shutdown
+ eUnIlRYUvlavp broadcast level 1.00
+ spanning-tree cost 10
+!
+interface GigabitEthernet3/3
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport trunk allowed vlan none
+ no ip address
+ logging event spanning-tree status
+ logging event GrzmwDbKIVBLZ
+ logging event M6M9lsFZLFTg
+ shutdown
+ eUnIlRYUvlavp broadcast level 1.00
+ spanning-tree cost 10
+!
+interface GigabitEthernet3/4
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport trunk allowed vlan none
+ no ip address
+ logging event spanning-tree status
+ logging event GrzmwDbKIVBLZ
+ logging event M6M9lsFZLFTg
+ shutdown
+ eUnIlRYUvlavp broadcast level 1.00
+ spanning-tree cost 10
+!
+interface GigabitEthernet3/5
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport trunk allowed vlan none
+ no ip address
+ logging event spanning-tree status
+ logging event GrzmwDbKIVBLZ
+ logging event M6M9lsFZLFTg
+ shutdown
+ eUnIlRYUvlavp broadcast level 1.00
+ spanning-tree cost 10
+!
+interface GigabitEthernet3/6
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport trunk allowed vlan none
+ no ip address
+ logging event spanning-tree status
+ logging event GrzmwDbKIVBLZ
+ logging event M6M9lsFZLFTg
+ shutdown
+ eUnIlRYUvlavp broadcast level 1.00
+ spanning-tree cost 10
+!
+interface GigabitEthernet3/7
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport trunk allowed vlan none
+ no ip address
+ logging event spanning-tree status
+ logging event GrzmwDbKIVBLZ
+ logging event M6M9lsFZLFTg
+ shutdown
+ eUnIlRYUvlavp broadcast level 1.00
+ spanning-tree cost 10
+!
+interface GigabitEthernet3/8
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport trunk allowed vlan none
+ no ip address
+ logging event spanning-tree status
+ logging event GrzmwDbKIVBLZ
+ logging event M6M9lsFZLFTg
+ shutdown
+ eUnIlRYUvlavp broadcast level 1.00
+ spanning-tree cost 10
+!
+interface GigabitEthernet3/9
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport trunk allowed vlan none
+ no ip address
+ logging event spanning-tree status
+ logging event GrzmwDbKIVBLZ
+ logging event M6M9lsFZLFTg
+ shutdown
+ eUnIlRYUvlavp broadcast level 1.00
+ spanning-tree cost 10
+!
+interface GigabitEthernet3/10
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport trunk allowed vlan none
+ no ip address
+ logging event spanning-tree status
+ logging event GrzmwDbKIVBLZ
+ logging event M6M9lsFZLFTg
+ shutdown
+ eUnIlRYUvlavp broadcast level 1.00
+ spanning-tree cost 10
+!
+interface GigabitEthernet3/11
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport trunk allowed vlan none
+ no ip address
+ logging event spanning-tree status
+ logging event GrzmwDbKIVBLZ
+ logging event M6M9lsFZLFTg
+ shutdown
+ eUnIlRYUvlavp broadcast level 1.00
+ spanning-tree cost 10
+!
+interface GigabitEthernet3/12
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport trunk allowed vlan none
+ no ip address
+ logging event spanning-tree status
+ logging event GrzmwDbKIVBLZ
+ logging event M6M9lsFZLFTg
+ shutdown
+ eUnIlRYUvlavp broadcast level 1.00
+ spanning-tree cost 10
+!
+interface GigabitEthernet3/13
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport trunk allowed vlan none
+ no ip address
+ logging event spanning-tree status
+ logging event GrzmwDbKIVBLZ
+ logging event M6M9lsFZLFTg
+ shutdown
+ eUnIlRYUvlavp broadcast level 1.00
+ spanning-tree cost 10
+!
+interface GigabitEthernet3/14
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport trunk allowed vlan none
+ no ip address
+ logging event spanning-tree status
+ logging event GrzmwDbKIVBLZ
+ logging event M6M9lsFZLFTg
+ shutdown
+ eUnIlRYUvlavp broadcast level 1.00
+ spanning-tree cost 10
+!
+interface GigabitEthernet3/15
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport trunk allowed vlan none
+ no ip address
+ logging event spanning-tree status
+ logging event GrzmwDbKIVBLZ
+ logging event M6M9lsFZLFTg
+ shutdown
+ eUnIlRYUvlavp broadcast level 1.00
+ spanning-tree cost 10
+!
+interface GigabitEthernet3/16
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport trunk allowed vlan 1557
+ mtu 9216
+ no ip address
+ logging event spanning-tree status
+ logging event GrzmwDbKIVBLZ
+ logging event M6M9lsFZLFTg
+ eUnIlRYUvlavp broadcast level 1.00
+ spanning-tree cost 10
+!
+interface GigabitEthernet4/1
+ no ip address
+ shutdown
+!
+interface GigabitEthernet4/2
+ no ip address
+ shutdown
+!
+interface GigabitEthernet4/3
+ no ip address
+ shutdown
+!
+interface GigabitEthernet4/4
+ no ip address
+ shutdown
+!
+interface GigabitEthernet4/5
+ no ip address
+ shutdown
+!
+interface GigabitEthernet4/6
+ no ip address
+ shutdown
+!
+interface GigabitEthernet4/7
+ no ip address
+ shutdown
+!
+interface GigabitEthernet4/8
+ no ip address
+ shutdown
+!
+interface GigabitEthernet4/9
+ no ip address
+ shutdown
+!
+interface GigabitEthernet4/10
+ no ip address
+ shutdown
+!
+interface GigabitEthernet4/11
+ no ip address
+ shutdown
+!
+interface GigabitEthernet4/12
+ no ip address
+ shutdown
+!
+interface GigabitEthernet4/13
+ no ip address
+ shutdown
+!
+interface GigabitEthernet4/14
+ no ip address
+ shutdown
+!
+interface GigabitEthernet4/15
+ no ip address
+ shutdown
+!
+interface GigabitEthernet4/16
+ no ip address
+ shutdown
+!
+interface GigabitEthernet4/17
+ no ip address
+ shutdown
+!
+interface GigabitEthernet4/18
+ no ip address
+ shutdown
+!
+interface GigabitEthernet4/19
+ no ip address
+ shutdown
+!
+interface GigabitEthernet4/20
+ no ip address
+ shutdown
+!
+interface GigabitEthernet4/21
+ no ip address
+ shutdown
+!
+interface GigabitEthernet4/22
+ no ip address
+ shutdown
+!
+interface GigabitEthernet4/23
+ no ip address
+ shutdown
+!
+interface GigabitEthernet4/24
+ no ip address
+ shutdown
+!
+interface GigabitEthernet4/25
+ no ip address
+ shutdown
+!
+interface GigabitEthernet4/26
+ no ip address
+ shutdown
+!
+interface GigabitEthernet4/27
+ no ip address
+ shutdown
+!
+interface GigabitEthernet4/28
+ no ip address
+ shutdown
+!
+interface GigabitEthernet4/29
+ no ip address
+ shutdown
+!
+interface GigabitEthernet4/30
+ no ip address
+ shutdown
+!
+interface GigabitEthernet4/31
+ no ip address
+ shutdown
+!
+interface GigabitEthernet4/32
+ no ip address
+ shutdown
+!
+interface GigabitEthernet4/33
+ no ip address
+ shutdown
+!
+interface GigabitEthernet4/34
+ no ip address
+ shutdown
+!
+interface GigabitEthernet4/35
+ no ip address
+ shutdown
+!
+interface GigabitEthernet4/36
+ no ip address
+ shutdown
+!
+interface GigabitEthernet4/37
+ no ip address
+ shutdown
+!
+interface GigabitEthernet4/38
+ no ip address
+ shutdown
+!
+interface GigabitEthernet4/39
+ no ip address
+ shutdown
+!
+interface GigabitEthernet4/40
+ no ip address
+ shutdown
+!
+interface GigabitEthernet4/41
+ no ip address
+ shutdown
+!
+interface GigabitEthernet4/42
+ no ip address
+ shutdown
+!
+interface GigabitEthernet4/43
+ no ip address
+ shutdown
+!
+interface GigabitEthernet4/44
+ no ip address
+ shutdown
+!
+interface GigabitEthernet4/45
+ no ip address
+ shutdown
+!
+interface GigabitEthernet4/46
+ no ip address
+ shutdown
+!
+interface GigabitEthernet4/47
+ no ip address
+ shutdown
+!
+interface GigabitEthernet4/48
+ no ip address
+ shutdown
+!
+interface GigabitEthernet5/1
+ no ip address
+ shutdown
+!
+interface GigabitEthernet5/2
+ no ip address
+ shutdown
+!
+interface Vlan1
+ no ip address
+ shutdown
+!
+interface Vlan1555
+ description  REMOVED
+ ip address 176.144.175.29 255.255.255.252
+ no ip redirects
+ no ip proxy-arp
+ ip rip advertise 10
+ ip route-cache flow
+!
+interface Vlan1557
+ mtu 9216
+ ip address 176.144.175.18 255.255.255.252
+ no ip redirects
+ no ip proxy-arp
+ ip pim sparse-mode
+ ip rip advertise 10
+ ip route-cache flow
+!
+interface Vlan3741
+ description  REMOVED
+ ip address 32.95.15.162 255.255.255.224
+ ip verify unicast source wHHXeUXKL77rV rx NyifrApZ1nZW64N
+ ip helper-address 179.46.170.104
+ no ip redirects
+ no ip proxy-arp
+ ip pim dr-priority 4294967294
+ ip pim sparse-mode
+ ip route-cache flow
+ standby ip 32.95.15.161
+ standby preempt
+ standby authentication vlan3741
+!
+router ospf 10
+ router-id 176.144.169.40
+ log-adjacency-changes
+ redistribute rip subnets
+ passive-interface default
+ no passive-interface Vlan1557
+ no passive-interface Loopback0
+ network 32.95.15.160 0.0.0.31 area 0
+ network 176.144.169.40 0.0.0.0 area 0
+ network 176.144.175.16 0.0.0.3 area 0
+!
+router rip
+ version 2
+ timers basic 10 30 40 50
+ redistribute ospf 10
+ passive-interface default
+ no passive-interface Vlan1555
+ no passive-interface Loopback0
+ network 176.144.0.0
+ default-information originate
+ default-metric 1
+ distribute-list 4 out
+ distribute-list 3 in
+ no auto-summary
+!
+ip classless
+!
+ip flow-export source Loopback0
+ip flow-export version 5
+no ip http server
+ip pim rp-address 179.46.29.196 override
+!
+ip radius source-interface Loopback0 
+logging history size 500
+logging history notifications
+logging trap debugging
+logging source-interface Loopback0
+logging 176.144.144.10
+access-list 3 remark  REMOVED
+access-list 3 deny   0.0.0.0
+access-list 3 permit any
+access-list 4 remark  REMOVED
+access-list 4 permit 0.0.0.0
+access-list 4 deny   any
+access-list 5 permit 179.46.98.169
+access-list 5 remark  REMOVED
+access-list 5 permit 201.6.106.9
+access-list 5 permit 179.46.98.38
+access-list 5 remark  REMOVED
+access-list 5 permit 164.171.24.17
+access-list 5 permit 179.46.98.87
+access-list 5 remark  REMOVED
+access-list 5 remark  REMOVED
+access-list 5 remark  REMOVED
+access-list 5 permit 179.46.77.0 0.0.0.255
+access-list 5 remark  REMOVED
+access-list 5 permit 176.144.128.0 0.0.15.255
+access-list 5 remark  REMOVED
+access-list 5 permit 164.171.16.0 0.0.3.255
+access-list 5 remark  REMOVED
+access-list 5 permit 176.144.168.0 0.0.3.255
+access-list 5 remark  REMOVED
+access-list 5 permit 176.144.144.0 0.0.0.255
+access-list 5 remark  REMOVED
+access-list 5 permit 176.144.172.0 0.0.3.255
+access-list 5 permit 176.144.160.0 0.0.7.255
+access-list 5 permit 176.144.188.0 0.0.1.255
+access-list 5 permit 176.144.190.0 0.0.1.255
+access-list 5 permit 176.144.184.0 0.0.3.255
+access-list 5 permit 176.144.176.0 0.0.7.255
+access-list 10 permit 179.46.98.169
+access-list 10 remark  REMOVED
+access-list 10 permit 179.46.192.41
+access-list 10 remark  REMOVED
+access-list 10 permit 201.6.106.9
+access-list 10 permit 179.46.98.38
+access-list 10 permit 164.171.22.22
+access-list 10 remark  REMOVED
+access-list 10 permit 179.46.98.80
+access-list 10 remark  REMOVED
+access-list 10 permit 164.171.24.17
+access-list 10 permit 179.46.98.87
+access-list 10 remark  REMOVED
+access-list 10 remark  REMOVED
+access-list 10 remark  REMOVED
+access-list 10 permit 176.144.128.0 0.0.15.255
+access-list 10 remark  REMOVED
+access-list 10 permit 164.171.16.0 0.0.3.255
+access-list 10 remark  REMOVED
+access-list 10 permit 176.144.147.120 0.0.0.128
+access-list 10 remark  REMOVED
+access-list 10 permit 179.46.77.0 0.0.0.255
+access-list 10 remark  REMOVED
+access-list 10 permit 176.144.144.0 0.0.0.255
+access-list 11 remark  REMOVED
+access-list 11 remark  REMOVED
+access-list 11 deny   any log
+access-list 100 remark  REMOVED
+access-list 100 remark  REMOVED
+access-list 100 remark  REMOVED
+access-list 100 remark  REMOVED
+access-list 100 permit ip 176.144.128.0 0.0.15.255 any
+access-list 100 permit ip 164.171.16.0 0.0.3.255 any
+access-list 100 permit ip 164.171.4.0 0.0.3.255 any
+access-list 100 permit ip 164.171.24.0 0.0.0.255 any
+access-list 100 permit ip host 164.171.172.193 any
+access-list 100 permit ip host 179.46.170.106 any
+access-list 100 permit ip host 201.6.106.9 any
+access-list 100 remark  REMOVED
+access-list 100 permit ip host 179.46.98.38 any
+access-list 100 permit ip host 179.46.98.87 any
+access-list 100 permit ip host 179.46.98.169 any
+access-list 100 remark  REMOVED
+access-list 100 permit ip host 164.171.24.17 any
+access-list 100 remark  REMOVED
+access-list 100 permit ip any host 176.144.144.25
+access-list 100 remark  REMOVED
+access-list 100 permit ip any host 176.144.130.153
+access-list 100 remark  REMOVED
+access-list 100 permit ip any host 176.144.130.154
+access-list 100 remark  REMOVED
+access-list 100 permit ip any host 176.144.130.155
+access-list 100 remark  REMOVED
+access-list 100 permit ip any host 176.144.130.144
+access-list 100 remark  REMOVED
+access-list 100 permit ip any host 176.144.130.146
+access-list 100 remark  REMOVED
+access-list 100 permit ip any host 176.144.144.45
+access-list 100 remark  REMOVED
+access-list 100 permit ip any host 176.144.130.148
+access-list 100 remark  REMOVED
+access-list 100 permit ip any host 176.144.130.150
+access-list 100 remark  REMOVED
+access-list 100 permit ip 164.171.64.0 0.0.0.255 any
+access-list 100 remark  REMOVED
+access-list 100 permit ip 164.171.64.0 0.0.3.255 host 176.144.140.218
+access-list 100 permit ip 164.171.64.0 0.0.3.255 host 176.144.140.219
+access-list 100 remark  REMOVED
+access-list 100 permit ip host 179.46.62.86 any
+access-list 100 permit ip host 179.46.62.80 any
+access-list 100 remark  REMOVED
+access-list 100 permit ip host 179.46.62.106 any
+access-list 100 remark  REMOVED
+access-list 100 permit ip 176.144.137.0 0.0.0.127 any
+access-list 100 remark  REMOVED
+access-list 100 permit ip 176.144.168.0 0.0.3.255 any
+access-list 100 remark  REMOVED
+access-list 100 permit ip 176.144.172.0 0.0.3.255 any
+access-list 100 permit ip 176.144.160.0 0.0.7.255 any
+access-list 100 permit ip 176.144.188.0 0.0.1.255 any
+access-list 100 permit ip 176.144.190.0 0.0.1.255 any
+access-list 100 permit ip 176.144.184.0 0.0.3.255 any
+access-list 100 remark  REMOVED
+access-list 100 permit ip 176.144.144.0 0.0.0.127 any
+access-list 100 remark  REMOVED
+access-list 100 permit ip 176.144.144.128 0.0.0.127 any
+access-list 100 remark  REMOVED
+access-list 100 permit ip host 176.144.144.25 any
+access-list 100 remark  REMOVED
+access-list 100 permit ip host 176.144.144.20 any
+access-list 100 remark  REMOVED
+access-list 100 permit ip host 176.144.144.21 any
+access-list 100 remark  REMOVED
+access-list 100 permit ip 179.46.77.0 0.0.0.255 any
+access-list 100 remark  REMOVED
+access-list 100 permit ip 164.171.30.224 0.0.0.15 any
+access-list 100 permit ip 176.144.146.0 0.0.0.127 any
+access-list 100 permit ip 179.46.91.224 0.0.0.15 any
+access-list 100 permit ip 179.46.91.160 0.0.0.15 any
+access-list 100 permit ip 176.144.148.0 0.0.3.255 any
+access-list 100 remark  REMOVED
+access-list 100 permit ip host 179.46.47.9 any
+access-list 110 remark  REMOVED
+access-list 110 remark  REMOVED
+access-list 110 permit ip 176.144.128.0 0.0.15.255 any
+access-list 110 remark  REMOVED
+access-list 110 permit ip host 164.171.172.193 any
+access-list 110 permit ip host 179.46.170.106 any
+access-list 110 permit ip host 201.6.106.9 any
+access-list 110 remark  REMOVED
+access-list 110 permit ip host 164.171.24.17 any
+access-list 110 remark  REMOVED
+access-list 110 permit ip 176.144.168.0 0.0.3.255 any
+access-list 110 remark  REMOVED
+access-list 110 permit ip 164.171.64.0 0.0.0.255 any
+access-list 110 remark  REMOVED
+access-list 110 permit ip 176.144.172.0 0.0.3.255 any
+access-list 110 permit ip 176.144.160.0 0.0.7.255 any
+access-list 110 permit ip 176.144.188.0 0.0.1.255 any
+access-list 110 permit ip 176.144.190.0 0.0.1.255 any
+access-list 110 permit ip 176.144.184.0 0.0.3.255 any
+access-list 110 permit ip any host 176.144.144.28
+access-list 110 remark  REMOVED
+access-list 110 permit ip 176.144.144.0 0.0.0.127 any
+access-list 110 remark  REMOVED
+access-list 110 permit ip 179.46.77.0 0.0.0.255 any
+access-list 110 remark  REMOVED
+access-list 110 permit ip 176.144.148.0 0.0.3.255 any
+access-list 110 remark  REMOVED
+access-list 110 permit ip host 179.46.98.169 any
+access-list 110 permit ip host 179.46.98.87 any
+access-list 110 permit ip host 179.46.98.80 any
+access-list 110 permit ip host 179.46.98.38 any
+access-list 110 permit ip host 164.171.18.187 any
+access-list 110 remark  REMOVED
+access-list 110 permit ip 164.171.16.0 0.0.3.255 any
+access-list 110 remark  REMOVED
+access-list 110 permit ip host 164.171.22.144 any
+access-list 110 permit ip host 179.46.13.164 any
+access-list 110 permit ip host 179.46.13.166 any
+access-list 110 permit ip host 179.46.13.180 any
+access-list 110 permit ip host 179.46.13.43 any
+access-list 110 permit ip host 179.46.146.100 any
+access-list 110 remark  REMOVED
+access-list 110 permit ip host 179.46.170.98 any
+access-list 110 permit ip host 164.171.172.202 any
+access-list 110 remark  REMOVED
+access-list 110 permit ip host 164.171.22.145 host 176.144.149.133
+access-list 110 remark  REMOVED
+access-list 110 permit ip host 179.46.13.21 any
+access-list 110 permit ip host 179.46.29.46 any
+access-list 110 permit ip host 164.171.25.147 any
+access-list 110 permit ip host 164.170.41.186 any
+access-list 110 permit ip host 164.170.40.63 any
+!
+snmp-server community cDdCSP1xK RO 10
+snmp-server community cDdCSP1xK RW 11
+snmp-server ifindex persist
+snmp-server trap-source Loopback0
+snmp-server contact  REMOVED
+snmp-server chassis-id egMrTIWXoUWqfbw5l
+snmp-server enable traps snmp authentication linkdown linkup coldstart warmstart
+snmp-server enable traps chassis
+snmp-server enable traps module
+snmp-server enable traps transceiver all
+snmp-server enable traps casa
+snmp-server enable traps tty
+snmp-server enable traps ospf state-change
+snmp-server enable traps ospf errors
+snmp-server enable traps ospf retransmit
+snmp-server enable traps ospf lsa
+snmp-server enable traps ospf WBQg08b7LODT82 state-change
+snmp-server enable traps ospf WBQg08b7LODT82 errors
+snmp-server enable traps ospf WBQg08b7LODT82 retransmit
+snmp-server enable traps ospf WBQg08b7LODT82 lsa
+snmp-server enable traps bgp
+snmp-server enable traps wFVdOGAUZk4
+snmp-server enable traps config
+snmp-server enable traps dlsw
+snmp-server enable traps PUfzoGdQZ4GD5
+snmp-server enable traps frame-relay
+snmp-server enable traps hsrp
+snmp-server enable traps ipmulticast
+snmp-server enable traps MAC-Notification move threshold
+snmp-server enable traps msdp
+snmp-server enable traps pim bGGYOjMLxmI+hpK CbctIC+kbv0bDdQKD PmmnMb9Q7ySZ589JD64
+snmp-server enable traps rf
+snmp-server enable traps rtr
+snmp-server enable traps slb real virtual VrcJ
+snmp-server enable traps bridge X83BopI nd9hiw1HHxY5fi
+snmp-server enable traps tT5n inconsistency ny+XFZusPFt6tvpTvf e4+lmXrLox8BHAPl2v
+snmp-server enable traps syslog
+snmp-server enable traps UFDR1vJzbt status
+snmp-server enable traps sonet
+snmp-server enable traps dial
+snmp-server enable traps xFSOMDhK
+snmp-server enable traps entity
+snmp-server enable traps rsvp
+snmp-server enable traps kGj agent quota database
+snmp-server enable traps srp
+snmp-server enable traps vtp
+snmp-server enable traps aKPLDjpbt2
+snmp-server enable traps gj4Ozx9dpv
+snmp-server enable traps flash insertion removal
+snmp-server enable traps yqVI7oD JA9f9EZHaqSP42 hGNzPLXHyi3b3Ng FrWvv
+snmp-server enable traps envmon fan shutdown supply temperature status
+snmp-server enable traps +UqLx+gALwnWy
+snmp-server enable traps mpls traffic-eng
+snmp-server enable traps mpls ldp
+snmp-server enable traps isakmp policy add
+snmp-server enable traps isakmp policy delete
+snmp-server enable traps isakmp tunnel start
+snmp-server enable traps isakmp tunnel stop
+snmp-server enable traps ipsec cryptomap add
+snmp-server enable traps ipsec cryptomap delete
+snmp-server enable traps ipsec cryptomap attach
+snmp-server enable traps ipsec cryptomap detach
+snmp-server enable traps ipsec tunnel start
+snmp-server enable traps ipsec tunnel stop
+snmp-server enable traps ipsec too-many-sas
+snmp-server enable traps alarms
+snmp-server enable traps bIdJRFcc5aebI2
+snmp-server enable traps voice poor-qov
+snmp-server enable traps mpls vpn
+snmp-server host 164.171.22.22 public 
+snmp-server host 176.144.130.196 public 
+!
+radius-server host 176.144.144.8 auth-port 1812 acct-port 1813
+radius-server dz7HQQH4EqT5 1645-1646
+radius-server key 7 cDdCSP1xK
+!
+oj5icqh1dGpSK
+!
+dial-peer cor custom
+!
+banner motd ^
+ REMOVED 
+
+
+
+
+
+
+
+
+ ^
+!
+line con 0
+ exec-timeout 30 0
+line vty 0 4
+ access-class 5 in
+ exec-timeout 30 0
+line vty 5 24
+ access-class 5 in
+ exec-timeout 30 0
+!
+ntp server 179.46.170.106 source Loopback0 prefer
+ntp server 164.171.172.193 source Loopback0
+ntp server 179.46.13.21
+no cns aaa enable
+end

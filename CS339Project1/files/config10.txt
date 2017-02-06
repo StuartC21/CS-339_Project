@@ -1,0 +1,305 @@
+!
+version 12.2
+no service single-slot-reload-enable
+no service pad
+service timestamps debug datetime localtime
+service timestamps log datetime localtime
+service password-encryption
+!
+hostname config10
+!
+boot-start-marker
+boot system disk0:rsp-jk91o3sv-mz.122-25.S9.bin
+boot bootldr disk0:rsp-boot-mz.122-18.S5.bin
+boot-end-marker
+!
+redundancy
+ no keepalive-enable
+ mode hsa
+logging snmp-authfail
+logging buffered 300000 debugging
+no logging console
+aaa new-model
+aaa authentication login default group radius local
+aaa authentication enable default enable
+aaa authorization exec default group radius local 
+aaa accounting update newinfo
+aaa accounting exec default start-stop group radius
+enable password cDdCSP1xK cDdCSP1xK
+!
+username cDdCSP1xK privilege 15 password cDdCSP1xK cDdCSP1xK
+microcode CIP flash disk0:cip28-13.bin
+microcode reload
+clock timezone CST -6
+clock summer-time cdt recurring 2 Sun Mar 2:00 1 Sun u5v 2:00
+ip subnet-zero
+!
+ip domain-list dnGpza8EXIpu6mKMQHYI7zsBHAc
+ip domain-name dnGpza8EXIpu6mKMQHYI7zsBHAc
+ip name-server 179.46.170.106
+ip name-server 164.171.172.193
+!
+ip cef
+ip audit notify log
+ip audit po max-events 100
+ip ssh authentication-retries 2
+no mpls traffic-eng auto-bw timers frequency 0
+call rsvp-sync
+!
+yaPx set xbDhBSQzCBJZ44 2700
+!
+interface FastEthernet0/0/0
+ no ip address
+ shutdown
+ half-duplex
+ no clns route-cache
+!
+interface Ethernet0/1/0
+ description  REMOVED
+ ip address 176.144.144.148 255.255.255.128
+ no ip route-cache cef
+ no ip route-cache
+ full-duplex
+ no clns route-cache
+!
+interface Ethernet0/1/1
+ no ip address
+ no ip route-cache cef
+ no ip route-cache
+ shutdown
+ no clns route-cache
+!
+interface Ethernet0/1/2
+ no ip address
+ no ip route-cache cef
+ no ip route-cache
+ shutdown
+ no clns route-cache
+!
+interface Ethernet0/1/3
+ no ip address
+ shutdown
+ no clns route-cache
+!
+interface Channel4/0
+ no ip address
+ no keepalive
+ shutdown
+ no clns route-cache
+!
+interface Channel4/1
+ no ip address
+ no keepalive
+ shutdown
+ no clns route-cache
+!
+interface Channel4/2
+ no ip address
+ no keepalive
+ shutdown
+ no clns route-cache
+!
+ip classless
+ip route 0.0.0.0 0.0.0.0 176.144.144.129
+!
+no ip http server
+!
+ip radius source-interface FastEthernet0/0/0
+logging 176.144.144.10
+access-list 5 permit 179.46.98.169
+access-list 5 remark  REMOVED
+access-list 5 permit 201.6.106.9
+access-list 5 permit 179.46.98.38
+access-list 5 remark  REMOVED
+access-list 5 permit 164.171.24.17
+access-list 5 permit 179.46.98.87
+access-list 5 remark  REMOVED
+access-list 5 remark  REMOVED
+access-list 5 remark  REMOVED
+access-list 5 permit 179.46.77.0 0.0.0.255
+access-list 5 remark  REMOVED
+access-list 5 permit 176.144.128.0 0.0.15.255
+access-list 5 remark  REMOVED
+access-list 5 permit 164.171.16.0 0.0.3.255
+access-list 5 remark  REMOVED
+access-list 5 permit 176.144.168.0 0.0.3.255
+access-list 5 remark  REMOVED
+access-list 5 permit 176.144.144.0 0.0.0.255
+access-list 5 remark  REMOVED
+access-list 5 permit 176.144.172.0 0.0.3.255
+access-list 5 permit 176.144.160.0 0.0.7.255
+access-list 5 permit 176.144.188.0 0.0.1.255
+access-list 5 permit 176.144.190.0 0.0.1.255
+access-list 5 permit 176.144.184.0 0.0.3.255
+access-list 5 permit 176.144.176.0 0.0.7.255
+access-list 10 permit 179.46.98.169
+access-list 10 remark  REMOVED
+access-list 10 permit 179.46.192.41
+access-list 10 remark  REMOVED
+access-list 10 permit 201.6.106.9
+access-list 10 permit 179.46.98.38
+access-list 10 permit 164.171.22.22
+access-list 10 remark  REMOVED
+access-list 10 permit 179.46.98.80
+access-list 10 remark  REMOVED
+access-list 10 permit 164.171.24.17
+access-list 10 permit 179.46.98.87
+access-list 10 remark  REMOVED
+access-list 10 remark  REMOVED
+access-list 10 remark  REMOVED
+access-list 10 permit 176.144.128.0 0.0.15.255
+access-list 10 remark  REMOVED
+access-list 10 permit 164.171.16.0 0.0.3.255
+access-list 10 remark  REMOVED
+access-list 10 permit 176.144.147.120 0.0.0.128
+access-list 10 remark  REMOVED
+access-list 10 permit 179.46.77.0 0.0.0.255
+access-list 10 remark  REMOVED
+access-list 10 permit 176.144.144.0 0.0.0.255
+access-list 100 remark  REMOVED
+access-list 100 remark  REMOVED
+access-list 100 remark  REMOVED
+access-list 100 remark  REMOVED
+access-list 100 permit ip 176.144.128.0 0.0.15.255 any
+access-list 100 permit ip 164.171.16.0 0.0.3.255 any
+access-list 100 permit ip 164.171.4.0 0.0.3.255 any
+access-list 100 permit ip 164.171.24.0 0.0.0.255 any
+access-list 100 permit ip host 164.171.172.193 any
+access-list 100 permit ip host 179.46.170.106 any
+access-list 100 permit ip host 201.6.106.9 any
+access-list 100 remark  REMOVED
+access-list 100 permit ip host 179.46.98.38 any
+access-list 100 permit ip host 179.46.98.87 any
+access-list 100 permit ip host 179.46.98.169 any
+access-list 100 remark  REMOVED
+access-list 100 permit ip host 164.171.24.17 any
+access-list 100 remark  REMOVED
+access-list 100 permit ip any host 176.144.144.25
+access-list 100 remark  REMOVED
+access-list 100 permit ip any host 176.144.130.153
+access-list 100 remark  REMOVED
+access-list 100 permit ip any host 176.144.130.154
+access-list 100 remark  REMOVED
+access-list 100 permit ip any host 176.144.130.155
+access-list 100 remark  REMOVED
+access-list 100 permit ip any host 176.144.130.144
+access-list 100 remark  REMOVED
+access-list 100 permit ip any host 176.144.130.146
+access-list 100 remark  REMOVED
+access-list 100 permit ip any host 176.144.144.45
+access-list 100 remark  REMOVED
+access-list 100 permit ip any host 176.144.130.148
+access-list 100 remark  REMOVED
+access-list 100 permit ip any host 176.144.130.150
+access-list 100 remark  REMOVED
+access-list 100 permit ip 164.171.64.0 0.0.0.255 any
+access-list 100 remark  REMOVED
+access-list 100 permit ip 164.171.64.0 0.0.3.255 host 176.144.140.218
+access-list 100 permit ip 164.171.64.0 0.0.3.255 host 176.144.140.219
+access-list 100 remark  REMOVED
+access-list 100 permit ip host 179.46.62.86 any
+access-list 100 permit ip host 179.46.62.80 any
+access-list 100 remark  REMOVED
+access-list 100 permit ip host 179.46.62.106 any
+access-list 100 remark  REMOVED
+access-list 100 permit ip 176.144.137.0 0.0.0.127 any
+access-list 100 remark  REMOVED
+access-list 100 permit ip 176.144.168.0 0.0.3.255 any
+access-list 100 remark  REMOVED
+access-list 100 permit ip 176.144.172.0 0.0.3.255 any
+access-list 100 permit ip 176.144.160.0 0.0.7.255 any
+access-list 100 permit ip 176.144.188.0 0.0.1.255 any
+access-list 100 permit ip 176.144.190.0 0.0.1.255 any
+access-list 100 permit ip 176.144.184.0 0.0.3.255 any
+access-list 100 remark  REMOVED
+access-list 100 permit ip 176.144.144.0 0.0.0.127 any
+access-list 100 remark  REMOVED
+access-list 100 permit ip 176.144.144.128 0.0.0.127 any
+access-list 100 remark  REMOVED
+access-list 100 permit ip host 176.144.144.25 any
+access-list 100 remark  REMOVED
+access-list 100 permit ip host 176.144.144.20 any
+access-list 100 remark  REMOVED
+access-list 100 permit ip host 176.144.144.21 any
+access-list 100 remark  REMOVED
+access-list 100 permit ip 179.46.77.0 0.0.0.255 any
+access-list 100 remark  REMOVED
+access-list 100 permit ip 164.171.30.224 0.0.0.15 any
+access-list 100 permit ip 176.144.146.0 0.0.0.127 any
+access-list 100 permit ip 179.46.91.224 0.0.0.15 any
+access-list 100 permit ip 179.46.91.160 0.0.0.15 any
+access-list 100 permit ip 176.144.148.0 0.0.3.255 any
+access-list 100 remark  REMOVED
+access-list 100 permit ip host 179.46.47.9 any
+!
+snmp-server community cDdCSP1xK RO 10
+snmp-server community cDdCSP1xK RW 11
+snmp-server trap-source Ethernet0/1/0
+snmp-server contact  REMOVED
+snmp-server chassis-id 1PRhl7VR7zDp5LpKsoI1f3H1Ev
+snmp-server enable traps snmp authentication linkdown linkup coldstart warmstart
+snmp-server enable traps tty
+snmp-server enable traps casa
+snmp-server enable traps rf
+snmp-server enable traps channel
+snmp-server enable traps isdn call-information
+snmp-server enable traps isdn layer2
+snmp-server enable traps isdn chan-not-avail
+snmp-server enable traps isdn ietf
+snmp-server enable traps srp
+snmp-server enable traps sonet
+snmp-server enable traps flash insertion removal
+snmp-server enable traps hsrp
+snmp-server enable traps config
+snmp-server enable traps entity
+snmp-server enable traps xFSOMDhK
+snmp-server enable traps envmon fan shutdown supply temperature status
+snmp-server enable traps aaa_server
+snmp-server enable traps bgp
+snmp-server enable traps pim bGGYOjMLxmI+hpK CbctIC+kbv0bDdQKD PmmnMb9Q7ySZ589JD64
+snmp-server enable traps ipmulticast
+snmp-server enable traps msdp
+snmp-server enable traps rsvp
+snmp-server enable traps frame-relay
+snmp-server enable traps syslog
+snmp-server enable traps rtr
+snmp-server enable traps mpls traffic-eng
+snmp-server enable traps mpls ldp
+snmp-server enable traps dlsw
+snmp-server enable traps dial
+snmp-server enable traps mpls vpn
+snmp-server enable traps voice poor-qov
+snmp-server enable traps xgcp
+snmp-server host 164.171.22.22 public 
+snmp-server host 176.144.130.196 public 
+!
+radius-server host 176.144.144.8 auth-port 1812 acct-port 1813
+radius-server key 7 cDdCSP1xK
+!
+oj5icqh1dGpSK
+!
+banner motd ^
+ REMOVED 
+
+
+
+
+
+ ^
+!
+line con 0
+ exec-timeout 30 0
+ stopbits 1
+line aux 0
+line vty 0 4
+ access-class 5 in
+ exec-timeout 30 0
+line vty 5 14
+ access-class 5 in
+ exec-timeout 30 0
+line vty 15
+!
+ntp server 164.171.172.193 source FastEthernet0/0/0 prefer
+ntp server 179.46.170.106 source FastEthernet0/0/0
+!
+end

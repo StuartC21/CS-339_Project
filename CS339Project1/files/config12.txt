@@ -1,0 +1,2234 @@
+!
+upgrade aMx auto
+version 12.2
+no service pad
+service timestamps debug datetime localtime
+service timestamps log datetime localtime
+service password-encryption
+service counters max age 10
+!
+hostname config12
+!
+boot system flash disk0:s72033-advipservicesk9_wan-mz.122-18.SXF8.bin
+logging snmp-authfail
+logging buffered 300000 debugging
+no logging console
+no logging monitor
+enable password cDdCSP1xK cDdCSP1xK
+!
+username cDdCSP1xK privilege 15 password cDdCSP1xK cDdCSP1xK
+aaa new-model
+aaa authentication login default group radius local
+aaa authentication enable default enable
+aaa authorization exec default group radius local 
+aaa accounting update newinfo
+aaa accounting exec default start-stop group radius
+!
+aaa session-id common
+clock timezone CST -6
+clock summer-time cdt recurring
+logging event link-status default
+ip subnet-zero
+!
+ip flow-cache entries 131072
+ip flow-cache timeout active 1
+ip tftp source-interface Loopback0
+ip multicast-routing 
+ip sap cache-timeout 60
+ip telnet source-interface Loopback0
+ip ssh time-out 30
+ip ssh authentication-retries 2
+ip ssh source-interface Loopback0
+ip ssh version 2
+ip domain-list dnGpza8EXIpu6mKMQHYI7zsBHAc
+ip domain-name dnGpza8EXIpu6mKMQHYI7zsBHAc
+ip name-server 179.46.170.106
+ip name-server 164.171.172.193
+ipv6 mfib fhXBwRr3VkLfjPWbvV Vdij30n+1rKuA206 ingress
+udld aggressive
+vtp mode transparent
+mls ip multicast I3fOHPoCFeB2IbA 9
+mls aging fast time 30 threshold 64
+mls netflow usage notify 80 300 
+mls flow ip jgofGyY+p4Bf5b
+mls flow ipv6 jgofGyY+p4Bf5b
+no mls acl 6ZbJ x5kuZn7aJelc
+mls cef error action recover
+!
+redundancy
+ mode r7n
+ main-cpu
+  auto-sync running-config
+  auto-sync standard
+!
+spanning-tree mode RprWC2s39L
+no spanning-tree optimize bpdu transmission
+spanning-tree extend system-id
+spanning-tree vlan 2,9,52,68,82,84,86,125,128,213,278,328,406-410 priority 0
+spanning-tree vlan 424-426,531,668,670-671,674,699,724,750,752,787 priority 0
+spanning-tree vlan 788-789,801,807-808,811,815-817,856,873,884,891 priority 0
+spanning-tree vlan 1104,1109,1121,1289,1336,1831,1856,3542-3543,3550 priority 0
+spanning-tree vlan 3551,3568-3569,3572-3575,3586-3589,3594-3595,3606 priority 0
+spanning-tree vlan 3607,3614-3615,3648-3649,3666-3667,3884-3885 priority 0
+diagnostic cns Xi+wwsW 22CtqmKm0mzZYqHhUHBUZvNITpY
+diagnostic cns subscribe bJpZc2RVilM55l8G1sT6DW80zvQ
+no diagnostic crash
+no errdisable detect cause XSUcAT0WK
+no errdisable detect cause 6sYzJFzQ
+no errdisable detect cause 0g+V27XLl
+errdisable recovery cause udld
+errdisable recovery cause m54tmK003
+errdisable recovery cause Zd9csbZA3CqOmzn1cc
+errdisable recovery cause b1an24t9t8Xyci61X
+errdisable recovery cause VijocvIkw
+errdisable recovery interval 30
+fabric K2j3sb9jFD04lW queue
+port-channel nW5iN8XwPR load-balance
+!
+vlan internal allocation policy ascending
+vlan dot1q tag native 
+vlan lgMGtlvoN+ Ea5v+QY0C 2000
+!
+vlan 2
+ name 5PFc9tR9kDwty8flRpav+0iV
+!
+vlan 9
+ name g3sBC3wryOFbbT8ESv
+!
+vlan 34
+ name CHcxThiOTSMVPSbrjq2PxvU
+!
+vlan 52
+ name CPnk5Uu5fdyn7xbzwc
+!
+vlan 55
+ name 7bHxFjDzfYerV9ab9QxS
+!
+vlan 56
+ name PBZGTizUdt0k6ObnvbZPk
+!
+vlan 60
+ name V1iwQB0N+br7EkTndpIC0XfBR6U
+!
+vlan 68
+ name ArX632CJvEWTGckvbKXtjoqNikw
+!
+vlan 76
+ name 0u1b4SskktJBIB+zA3Am6S41kr
+!
+vlan 79
+ name jmzfw5tCV1IzOEdfUDbNu
+!
+vlan 80
+ name dfP61gb1bLgAJvVnNE729Z
+!
+vlan 82
+ name U0PTFBk9uuS8HPvZqfm5WV
+!
+vlan 84
+ name AOSLbUSkfAhebdJ5cuVog19D
+!
+vlan 86
+ name v+lpHkRzPRnGwJwqhlTB
+!
+vlan 90
+ name 8ZOGOA8AvLS
+!
+vlan 91
+ name R8uUCvcBmq
+!
+vlan 103
+ name E8Z13LYQdweNyhDVY
+!
+vlan 125
+ name 3+VAIerxLJXQfY34Ga
+!
+vlan 126
+ name +lNWg7w1blE
+!
+vlan 127
+ name 362A0SaANTIq
+!
+vlan 128
+ name Gyo2b1URRA5
+!
+vlan 213
+ name 9R5B49HTdjb
+!
+vlan 219
+ name pnnseDsdkSr6
+!
+vlan 244
+ name g+vuSSuRrM3f0tyUjWDPL
+!
+vlan 271
+ name eMh2WHTR5gjrWqKjdVpDkhNeW0c
+!
+vlan 278
+ name CLdcivDDAyngyuEU
+!
+vlan 301
+ name mj5dCpsVSVWMGyVoqio8r0dMSwo
+!
+vlan 328
+ name rEfE5PJXK4QUa_2-217_26
+!
+vlan 397
+ name XjB0d3qhxk3rFyW
+!
+vlan 406
+ name ZIbv42lTPb7Kx
+!
+vlan 407
+ name D5LbLAbvY8HWob4
+!
+vlan 408
+ name k7ZnTV2IObRv3Gm9
+!
+vlan 409
+ name rDoIy6XlOdBs
+!
+vlan 410
+ name DkbtdguMjyf7iVHtq
+!
+vlan 424
+ name UDxzjaPYJtXK
+!
+vlan 425
+ name JXYGMkM8lxx+rbEU
+!
+vlan 426
+ name ZVtnXZBaWL1I
+!
+vlan 441 
+!
+vlan 444
+ name IFJTaBDgGCQlpwaJ6i1LHvAFDRQ_1-170-104_30
+!
+vlan 446
+ name YtcjMh3yc4ya
+!
+vlan 447
+ name 0YH9PJuteS4PyYFs
+!
+vlan 448
+ name kti9WAH4dATN0lp
+!
+vlan 449
+ name YRf2VMJZoJhgaiy
+!
+vlan 450
+ name qj07vS4Cm+PYKOMaF-100
+!
+vlan 496
+ name erpQYDuh9j28abg3QD1xm1_4-108-0_22
+!
+vlan 497
+ name 4bVWu4D6PB+T
+!
+vlan 498
+ name vEjD842eS70AOVEbGm7Nw
+!
+vlan 499
+ name DfcVg87hkWMiBQvfrBcU3WF
+!
+vlan 504
+ name Wfa6yQHG1OIRaW7w1NgxPsT3b
+!
+vlan 526
+ name cDoeEJFXo0K53JMN4Op
+!
+vlan 529
+ name CLFMVI126UlJXEbxg_2-167-128_25
+!
+vlan 531
+ name SidrT7G+4gL20
+!
+vlan 532
+ name 2D6CUBY4HkEzTK
+!
+vlan 640
+ name ILMwhVcUm4GfaIAi3E96UUEpN+A
+!
+vlan 668
+ name OhKpESpxMvLO7VuFKHmVahr41YM
+!
+vlan 669
+ name pEPfN7fhcW1fl6mGcawUsCU2zE0
+!
+vlan 670
+ name KBqbtPPu9QPKyxMkC2MrtktCY4
+!
+vlan 671
+ name gn83eoLl5jdbxjBk7W7OebP
+!
+vlan 674
+ name 49TWfl8Vd1cTm8I5llrtZTddtz
+!
+vlan 698
+ name GkVRnmfVCedO7_4-64-0_22
+!
+vlan 699
+ name wEAenWMGTOZFCSeXUVLdYlYNl+s_2-100-0_24
+!
+vlan 700
+ name bOow947Y9q1ruPsMQ7RkmEHSpC4_2-101-0_24
+!
+vlan 724
+ name MmmqFnoJIZ3XrZMoSYEv7jF319A_2-234-128_25
+!
+vlan 732
+ name 8GFhfRX8Ml5bbwX
+!
+vlan 734
+ name Ci4b+u4waGsutibN7Dq291
+!
+vlan 750
+ name oZa9i4UYBldkSSID+7J
+!
+vlan 752
+ name xdH9Ib5CFNl8Ebk_2-4-0_24
+!
+vlan 764
+ name dbcFY1HniDF4RY2n8AF2A7KO
+!
+vlan 787
+ name AkZz9bb9ptmtbYVfFMFP6AnVl9k
+!
+vlan 788
+ name XwT+tDUXgsYTKqSQVcn
+!
+vlan 789
+ name 6ecR6iRXYCfAoliUqBnyy3Cy3
+!
+vlan 798
+ name +N7UI3Y0j2QpgEFKIK
+!
+vlan 799
+ name iGuRhHEk2wkNuOVTfxKKKtnYD1Y
+!
+vlan 801
+ name npXEKmiNZgcxZmkaJi
+!
+vlan 806
+ name vr7JF0YxzO4yxb4ffU1i7
+!
+vlan 807
+ name eR90aJ1D2QST01eojRBtc
+!
+vlan 808
+ name VUbyBGA+Gk3DPJys4PnNXNR
+!
+vlan 810
+ name LQwRoMTn6VT95BmrJnyB
+!
+vlan 811
+ name dUoTvxV85my
+!
+vlan 813
+ name 3pKb1pYt7Z9P3MP5YqBi4A
+!
+vlan 815
+ name 4r0MMc4W0Q67s
+!
+vlan 817
+ name jCOrIFEaZnvo94kHl
+!
+vlan 818
+ name 5wWTErsESE+ZeMjuhwvrpDaG
+!
+vlan 821
+ name 6rCPDgvLt7v8bcjt
+!
+vlan 822
+ name AizrbpTz9MxyB7sg1jU7Nmie
+!
+vlan 827 
+!
+vlan 831
+ name jbAoTf9kmtPT0gePIVn0+sXy
+!
+vlan 832
+ name 5+b8TaW16lmDbUerbW
+!
+vlan 833
+ name Ksq9pgi+Z3Lapxy
+!
+vlan 838 
+!
+vlan 842
+ name nk9HdvRURRgFkhuuCIjCu2VIivw_2-125-128_25
+!
+vlan 856
+ name PrAXGiTbvlmeemCj8dDbNzUTP6g
+!
+vlan 864
+ name WiVwZUxghiXaXgN
+!
+vlan 873
+ name jNgsWOuTQK4lwxX0UI7
+!
+vlan 884
+ name TIZqDgEfO2GVsCYswkaZFp
+!
+vlan 891
+ name Ih45GetqNevSL6G4wUNPII_2-167-0_25
+!
+vlan 1104
+ name K2J4B9nCPYn
+!
+vlan 1109
+ name WWI7io+hahvpwI
+!
+vlan 1121
+ name ElRVVdratjUBlJqOMsJg0
+!
+vlan 1289
+ name EG9EvmpbzObCL
+!
+vlan 1320 
+!
+vlan 1336
+ name JkdiJZop6ewr4FK3WAlmbxH1Neg
+!
+vlan 1353
+ name I9Ulz2lSTEXF4JjmGN
+!
+vlan 1354
+ name 44QATg2i0AAqWbwKzVz
+!
+vlan 1526-1527 
+!
+vlan 1580
+ name 6O+wbbF8gipdeLIBBJo8Si
+!
+vlan 1595,1628 
+!
+vlan 1752
+ name sB66PqeO5M
+!
+vlan 1754
+ name R64+No06Oo
+!
+vlan 1794
+ name DNanHQ1Siiuq9JSWC9
+!
+vlan 1806
+ name H9fJF2ubOkMtjz86Tezb
+!
+vlan 1831
+ name IGfxwTYYwCFaa5dETUp
+!
+vlan 1843
+ name zZy2IMsrHwMoQZtEBJ
+!
+vlan 1856
+ name SqkIosLf21Gcxdv01N7yb3+
+!
+vlan 1889
+ name xUsh0PMdHDozZKawK5s56
+!
+vlan 1893
+ name 32WdCBtm+cCOOHYWCXVeiL
+!
+vlan 1976
+ name pg+NpiPREZgOYDpDIsZbj
+!
+vlan 2525
+ name wF31nBhW+XsoZI3xJWa9w_4_0_24
+!
+vlan 2526
+ name si30pq5L2mJg3d5YjS1B
+!
+vlan 3542
+ name w+bEJqAm8feCkHn2QfNSagV
+!
+vlan 3543
+ name hUhe9T85A1531uzn5t8hgz
+!
+vlan 3550
+ name rCdlKJIePn4IKAqCVsIbubgkTpo
+!
+vlan 3551
+ name 0tMdK2PWK8XAYo86CWn503Kg8VI
+!
+vlan 3568
+ name ShMm5HzQz0n2ZVXfxTpzjd
+!
+vlan 3569
+ name d1tDzjxVeEsTOFRFfn4ud
+!
+vlan 3572
+ name MWiHb6Z61uqciWDvYVCbdz3GiQo
+!
+vlan 3573
+ name BKCZox44tts7bzc6lbD2b2TFtlU
+!
+vlan 3574
+ name XhcNZVL0noqntWCfvKC+BHrBtHI
+!
+vlan 3575
+ name G5cewZWk4yMIzI6euHCk9X5FJws
+!
+vlan 3586
+ name yTP+iJy2QcE9dJ5MPkxCrl4CPqg
+!
+vlan 3587
+ name aUdht9S4ARTwf4EfPcKycVENXy0
+!
+vlan 3588
+ name WFzC62HbczsoLvvOn
+!
+vlan 3589
+ name yzObi5nJrslu7X+s
+!
+vlan 3594
+ name INB1sWYt20Jr1y1YkvnwqFEhh7Y
+!
+vlan 3595
+ name cMvYpGERrmdTT81OhgmUnbbvTRY
+!
+vlan 3606
+ name exMb3zoK1Kca6jnip
+!
+vlan 3607
+ name JsfYyefYe+PkHQ4p
+!
+vlan 3614
+ name zUfuiD0NQ9GlfXyj2fCo6
+!
+vlan 3615
+ name HVUwQbOZWR0Oam6f22kU
+!
+vlan 3648
+ name UvNZuCalY0ie30RovzbcbvccJ
+!
+vlan 3649
+ name 3KpbCWCz3y7a0DDBfbJmhB1V
+!
+vlan 3666
+ name uofSE2ukPwSfMfKs766k0
+!
+vlan 3667
+ name Qf7CztFi8obRref9muIa
+!
+vlan 3884
+ name Gl+bfmqszLNRiniU3DwUDMz
+!
+vlan 3885
+ name hXNVe2TWeOb4TXaRTNfwFq
+!
+!
+interface Loopback0
+ ip address 176.144.168.21 255.255.255.255
+ ip rip advertise 10
+!
+interface Port-channel47
+ description  REMOVED
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport trunk allowed vlan 9,34,68,82,84,86,125,301,640,734,801,806-808,810
+ switchport trunk allowed vlan add 811,813,815,817,818,821,822,831-833,842,843
+ switchport trunk allowed vlan add 1794,3588,3589,3606,3607
+ no ip address
+ logging event spanning-tree status
+ logging event GrzmwDbKIVBLZ
+ logging event M6M9lsFZLFTg
+ spanning-tree cost 10
+!
+interface 0fGSi4zCax+ZINlXEW1tD1/1
+ description  REMOVED
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport trunk allowed vlan 2-33,35-54,57-59,61-76,82,84,86-89,92-102
+ switchport trunk allowed vlan add 104-125,128-218,220-243,245-270,272-296
+ switchport trunk allowed vlan add 298-300,302-407,411-421,423-443,451-505
+ switchport trunk allowed vlan add 507-525,527-531,533-538,541-556,558-591
+ switchport trunk allowed vlan add 593-600,602-639,641-645,647-668,670-718
+ switchport trunk allowed vlan add 720-731,733,735-763,765-775,777,778,780-790
+ switchport trunk allowed vlan add 793-798,800-803,805-809,811,814,815,817,819
+ switchport trunk allowed vlan add 820,825-828,830,834,836-841,843-849,851-863
+ switchport trunk allowed vlan add 865-899,1104,1109,1121,1289,1336,1527
+ switchport trunk allowed vlan add 2500-3499,3542,3543,3550,3551,3568,3569
+ switchport trunk allowed vlan add 3572-3575,3586-3589,3594,3595,3606,3607,3614
+ switchport trunk allowed vlan add 3615,3648,3649,3666,3667,3884,3885
+ mtu 9216
+ no ip address
+ logging event spanning-tree status
+ logging event GrzmwDbKIVBLZ
+ logging event M6M9lsFZLFTg
+ spanning-tree guard none
+ spanning-tree cost 100
+!
+interface TO65kU1GB2OOJNlUDNqiq1/2
+ description  REMOVED
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport trunk allowed vlan 34,55,56,60,76,79,80,90,91,103,126,127,219,244
+ switchport trunk allowed vlan add 271,301,397,446-450,496-499,504,526,532,640
+ switchport trunk allowed vlan add 669,698,700,732,734,764,798,799,810,813,818
+ switchport trunk allowed vlan add 821,822,827,831-833,838,842,864,1320,1353
+ switchport trunk allowed vlan add 1354,1526
+ mtu 9216
+ no ip address
+ logging event spanning-tree status
+ logging event GrzmwDbKIVBLZ
+ logging event M6M9lsFZLFTg
+ spanning-tree cost 10
+!
+interface g5yAURr7ePUhGegCJa84J1/3
+ no ip address
+ shutdown
+!
+interface 1lgMR0vD1RfavSbq3Dt3J1/4
+ no ip address
+ shutdown
+!
+interface FastEthernet2/1
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport trunk allowed vlan none
+ no ip address
+ logging event spanning-tree status
+ logging event GrzmwDbKIVBLZ
+ logging event M6M9lsFZLFTg
+ shutdown
+ duplex full
+ eUnIlRYUvlavp broadcast level 10.00
+ spanning-tree cost 10
+!
+interface FastEthernet2/2
+ switchport
+ switchport mode access
+ no ip address
+ logging event spanning-tree status
+ logging event GrzmwDbKIVBLZ
+ logging event M6M9lsFZLFTg
+ shutdown
+ duplex full
+ eUnIlRYUvlavp broadcast level 10.00
+!
+interface FastEthernet2/3
+ switchport
+ switchport mode access
+ no ip address
+ logging event spanning-tree status
+ logging event GrzmwDbKIVBLZ
+ logging event M6M9lsFZLFTg
+ shutdown
+ duplex full
+ eUnIlRYUvlavp broadcast level 10.00
+!
+interface FastEthernet2/4
+ description  REMOVED
+ switchport
+ switchport access vlan 698
+ switchport mode access
+ no ip address
+ logging event spanning-tree status
+ logging event GrzmwDbKIVBLZ
+ logging event M6M9lsFZLFTg
+ duplex full
+ eUnIlRYUvlavp broadcast level 10.00
+!
+interface FastEthernet2/5
+ description  REMOVED
+ switchport
+ switchport access vlan 328
+ switchport mode access
+ no ip address
+ logging event spanning-tree status
+ logging event GrzmwDbKIVBLZ
+ logging event M6M9lsFZLFTg
+ duplex full
+ eUnIlRYUvlavp broadcast level 10.00
+!
+interface FastEthernet2/6
+ switchport
+ switchport mode access
+ no ip address
+ logging event spanning-tree status
+ logging event GrzmwDbKIVBLZ
+ logging event M6M9lsFZLFTg
+ shutdown
+ duplex full
+ eUnIlRYUvlavp broadcast level 10.00
+!
+interface FastEthernet2/7
+ switchport
+ switchport mode access
+ no ip address
+ logging event spanning-tree status
+ logging event GrzmwDbKIVBLZ
+ logging event M6M9lsFZLFTg
+ shutdown
+ duplex full
+ eUnIlRYUvlavp broadcast level 10.00
+!
+interface FastEthernet2/8
+ switchport
+ switchport mode access
+ no ip address
+ logging event spanning-tree status
+ logging event GrzmwDbKIVBLZ
+ logging event M6M9lsFZLFTg
+ shutdown
+ duplex full
+ eUnIlRYUvlavp broadcast level 10.00
+!
+interface FastEthernet2/9
+ switchport
+ switchport mode access
+ no ip address
+ logging event spanning-tree status
+ logging event GrzmwDbKIVBLZ
+ logging event M6M9lsFZLFTg
+ shutdown
+ duplex full
+ eUnIlRYUvlavp broadcast level 10.00
+!
+interface FastEthernet2/10
+ description  REMOVED
+ switchport
+ switchport access vlan 873
+ switchport mode access
+ no ip address
+ logging event spanning-tree status
+ logging event GrzmwDbKIVBLZ
+ logging event M6M9lsFZLFTg
+ duplex full
+ eUnIlRYUvlavp broadcast level 10.00
+!
+interface FastEthernet2/11
+ switchport
+ switchport mode access
+ no ip address
+ logging event spanning-tree status
+ logging event GrzmwDbKIVBLZ
+ logging event M6M9lsFZLFTg
+ shutdown
+ eUnIlRYUvlavp broadcast level 10.00
+!
+interface FastEthernet2/12
+ switchport
+ switchport mode access
+ no ip address
+ logging event spanning-tree status
+ logging event GrzmwDbKIVBLZ
+ logging event M6M9lsFZLFTg
+ shutdown
+ duplex full
+ eUnIlRYUvlavp broadcast level 10.00
+!
+interface FastEthernet2/13
+ switchport
+ switchport mode access
+ no ip address
+ logging event spanning-tree status
+ logging event GrzmwDbKIVBLZ
+ logging event M6M9lsFZLFTg
+ shutdown
+ duplex full
+ eUnIlRYUvlavp broadcast level 10.00
+!
+interface FastEthernet2/14
+ switchport
+ switchport mode access
+ no ip address
+ logging event spanning-tree status
+ logging event GrzmwDbKIVBLZ
+ logging event M6M9lsFZLFTg
+ shutdown
+ duplex full
+ eUnIlRYUvlavp broadcast level 10.00
+!
+interface FastEthernet2/15
+ switchport
+ switchport mode access
+ no ip address
+ logging event spanning-tree status
+ logging event GrzmwDbKIVBLZ
+ logging event M6M9lsFZLFTg
+ shutdown
+ duplex full
+ eUnIlRYUvlavp broadcast level 10.00
+!
+interface FastEthernet2/16
+ description  REMOVED
+ switchport
+ switchport access vlan 698
+ switchport mode access
+ no ip address
+ logging event spanning-tree status
+ logging event GrzmwDbKIVBLZ
+ logging event M6M9lsFZLFTg
+ shutdown
+ duplex full
+ eUnIlRYUvlavp broadcast level 10.00
+ no cdp enable
+!
+interface FastEthernet2/17
+ description  REMOVED
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport trunk allowed vlan 397,496-499,798
+ no ip address
+ logging event spanning-tree status
+ logging event GrzmwDbKIVBLZ
+ logging event M6M9lsFZLFTg
+ shutdown
+ duplex full
+ eUnIlRYUvlavp broadcast level 10.00
+ spanning-tree cost 10
+!
+interface FastEthernet2/18
+ switchport
+ switchport mode access
+ no ip address
+ logging event spanning-tree status
+ logging event GrzmwDbKIVBLZ
+ logging event M6M9lsFZLFTg
+ shutdown
+ duplex full
+ eUnIlRYUvlavp broadcast level 10.00
+!
+interface FastEthernet2/19
+ description  REMOVED
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport trunk allowed vlan 60,213,668-671,674,1806,3884,3885
+ no ip address
+ logging event spanning-tree status
+ logging event GrzmwDbKIVBLZ
+ logging event M6M9lsFZLFTg
+ duplex full
+ eUnIlRYUvlavp broadcast level 10.00
+ spanning-tree cost 10
+!
+interface FastEthernet2/20
+ switchport
+ switchport trunk allowed vlan none
+ no ip address
+ logging event spanning-tree status
+ logging event GrzmwDbKIVBLZ
+ logging event M6M9lsFZLFTg
+ shutdown
+ eUnIlRYUvlavp broadcast level 10.00
+!
+interface FastEthernet2/21
+ switchport
+ switchport trunk allowed vlan none
+ no ip address
+ logging event spanning-tree status
+ logging event GrzmwDbKIVBLZ
+ logging event M6M9lsFZLFTg
+ shutdown
+ eUnIlRYUvlavp broadcast level 10.00
+!
+interface FastEthernet2/22
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport trunk allowed vlan none
+ no ip address
+ logging event spanning-tree status
+ logging event GrzmwDbKIVBLZ
+ logging event M6M9lsFZLFTg
+ shutdown
+ duplex full
+ eUnIlRYUvlavp broadcast level 10.00
+ spanning-tree cost 10
+!
+interface FastEthernet2/23
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport trunk allowed vlan none
+ no ip address
+ logging event spanning-tree status
+ logging event GrzmwDbKIVBLZ
+ logging event M6M9lsFZLFTg
+ shutdown
+ duplex full
+ eUnIlRYUvlavp broadcast level 10.00
+ spanning-tree cost 10
+!
+interface FastEthernet2/24
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport trunk allowed vlan none
+ no ip address
+ logging event spanning-tree status
+ logging event GrzmwDbKIVBLZ
+ logging event M6M9lsFZLFTg
+ shutdown
+ duplex full
+ eUnIlRYUvlavp broadcast level 10.00
+ spanning-tree cost 10
+!
+interface GigabitEthernet3/1
+ description  REMOVED
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport trunk allowed vlan 9,34,68,82,84,86,125,301,640,734,801,806-808,810
+ switchport trunk allowed vlan add 811,813,815,817,818,821,822,831-833,842,843
+ switchport trunk allowed vlan add 1794,3588,3589,3606,3607
+ no ip address
+ logging event spanning-tree status
+ logging event GrzmwDbKIVBLZ
+ logging event M6M9lsFZLFTg
+ eUnIlRYUvlavp broadcast level 1.00
+ spanning-tree cost 10
+ channel-group 47 mode on
+!
+interface GigabitEthernet3/2
+ description  REMOVED
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport trunk allowed vlan 9,34,68,82,84,86,125,301,640,734,801,806-808,810
+ switchport trunk allowed vlan add 811,813,815,817,818,821,822,831-833,842,843
+ switchport trunk allowed vlan add 1794,3588,3589,3606,3607
+ no ip address
+ logging event spanning-tree status
+ logging event GrzmwDbKIVBLZ
+ logging event M6M9lsFZLFTg
+ eUnIlRYUvlavp broadcast level 1.00
+ spanning-tree cost 10
+ channel-group 47 mode on
+!
+interface GigabitEthernet3/3
+ description  REMOVED
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport trunk allowed vlan 76,103,504,764,1109,1831,3542,3543
+ no ip address
+ logging event spanning-tree status
+ logging event GrzmwDbKIVBLZ
+ logging event M6M9lsFZLFTg
+ eUnIlRYUvlavp broadcast level 1.00
+ spanning-tree cost 10
+!
+interface GigabitEthernet3/4
+ description  REMOVED
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport trunk allowed vlan 446-450
+ no ip address
+ logging event spanning-tree status
+ logging event GrzmwDbKIVBLZ
+ logging event M6M9lsFZLFTg
+ eUnIlRYUvlavp broadcast level 1.00
+ spanning-tree cost 10
+!
+interface GigabitEthernet3/5
+ description  REMOVED
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport trunk allowed vlan 128,219,244,278,526,752,1121,1320,1336,1889,2525
+ switchport trunk allowed vlan add 2526,3594,3595,3666,3667
+ no ip address
+ logging event spanning-tree status
+ logging event GrzmwDbKIVBLZ
+ logging event M6M9lsFZLFTg
+ eUnIlRYUvlavp broadcast level 1.00
+ spanning-tree cost 10
+!
+interface GigabitEthernet3/6
+ description  REMOVED
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport trunk allowed vlan 126,127,406-410,424,425,532,699,700,732,864,873
+ switchport trunk allowed vlan add 884,1104,1628,3586,3587
+ no ip address
+ logging event spanning-tree status
+ logging event GrzmwDbKIVBLZ
+ logging event M6M9lsFZLFTg
+ eUnIlRYUvlavp broadcast level 1.00
+ spanning-tree cost 10
+!
+interface GigabitEthernet3/7
+ description  REMOVED
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport trunk allowed vlan 787-789,891,1754,3648,3649
+ no ip address
+ logging event spanning-tree status
+ logging event GrzmwDbKIVBLZ
+ logging event M6M9lsFZLFTg
+ eUnIlRYUvlavp broadcast level 1.00
+ spanning-tree cost 10
+!
+interface GigabitEthernet3/8
+ description  REMOVED
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport trunk allowed vlan 52,55,56,79,80,90,91,407-410,750,808,842,856
+ switchport trunk allowed vlan add 1752,3568,3569
+ no ip address
+ logging event spanning-tree status
+ logging event GrzmwDbKIVBLZ
+ logging event M6M9lsFZLFTg
+ eUnIlRYUvlavp broadcast level 1.00
+ spanning-tree cost 10
+!
+interface GigabitEthernet3/9
+ description  REMOVED
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport trunk allowed vlan 529,813,842,1336,1843,2525,2526,3666,3667
+ switchport mode trunk
+ no ip address
+ logging event spanning-tree status
+ logging event GrzmwDbKIVBLZ
+ logging event M6M9lsFZLFTg
+ eUnIlRYUvlavp broadcast level 1.00
+ spanning-tree cost 10
+!
+interface GigabitEthernet3/10
+ description  REMOVED
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport trunk allowed vlan 68,271,799,815,1856,3614,3615
+ no ip address
+ logging event spanning-tree status
+ logging event GrzmwDbKIVBLZ
+ logging event M6M9lsFZLFTg
+ eUnIlRYUvlavp broadcast level 1.00
+ spanning-tree cost 10
+!
+interface GigabitEthernet3/11
+ description  REMOVED
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport trunk allowed vlan 531,1976
+ no ip address
+ logging event spanning-tree status
+ logging event GrzmwDbKIVBLZ
+ logging event M6M9lsFZLFTg
+ eUnIlRYUvlavp broadcast level 1.00
+ spanning-tree cost 10
+!
+interface GigabitEthernet3/12
+ no ip address
+ logging event spanning-tree status
+ logging event GrzmwDbKIVBLZ
+ logging event M6M9lsFZLFTg
+ shutdown
+ eUnIlRYUvlavp broadcast level 1.00
+!
+interface GigabitEthernet3/13
+ description  REMOVED
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport trunk allowed vlan 698,1893,3572-3575
+ no ip address
+ logging event spanning-tree status
+ logging event GrzmwDbKIVBLZ
+ logging event M6M9lsFZLFTg
+ eUnIlRYUvlavp broadcast level 1.00
+ spanning-tree cost 10
+!
+interface GigabitEthernet3/14
+ description  REMOVED
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport trunk allowed vlan 2,1353,1354,1580,3550,3551
+ no ip address
+ logging event spanning-tree status
+ logging event GrzmwDbKIVBLZ
+ logging event M6M9lsFZLFTg
+ eUnIlRYUvlavp broadcast level 1.00
+ spanning-tree cost 10
+!
+interface GigabitEthernet3/15
+ description  REMOVED
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport trunk allowed vlan 724,891,1289,1595
+ no ip address
+ logging event spanning-tree status
+ logging event GrzmwDbKIVBLZ
+ logging event M6M9lsFZLFTg
+ eUnIlRYUvlavp broadcast level 1.00
+ spanning-tree cost 10
+!
+interface GigabitEthernet3/16
+ description  REMOVED
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport trunk allowed vlan 9,68,82,84,86,125,444,801,806-808,810,811,813
+ switchport trunk allowed vlan add 815,817,818,821,822,831-833,843
+ no ip address
+ logging event spanning-tree status
+ logging event GrzmwDbKIVBLZ
+ logging event M6M9lsFZLFTg
+ eUnIlRYUvlavp broadcast level 1.00
+ spanning-tree cost 10
+!
+interface GigabitEthernet4/1
+ no ip address
+ shutdown
+!
+interface GigabitEthernet4/2
+ no ip address
+ shutdown
+!
+interface GigabitEthernet4/3
+ no ip address
+ shutdown
+!
+interface GigabitEthernet4/4
+ no ip address
+ shutdown
+!
+interface GigabitEthernet4/5
+ no ip address
+ shutdown
+!
+interface GigabitEthernet4/6
+ no ip address
+ shutdown
+!
+interface GigabitEthernet4/7
+ no ip address
+ shutdown
+!
+interface GigabitEthernet4/8
+ no ip address
+ shutdown
+!
+interface GigabitEthernet4/9
+ no ip address
+ shutdown
+!
+interface GigabitEthernet4/10
+ no ip address
+ shutdown
+!
+interface GigabitEthernet4/11
+ no ip address
+ shutdown
+!
+interface GigabitEthernet4/12
+ no ip address
+ shutdown
+!
+interface GigabitEthernet4/13
+ no ip address
+ shutdown
+!
+interface GigabitEthernet4/14
+ description  REMOVED
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport trunk allowed vlan none
+ switchport mode trunk
+ no ip address
+ logging event spanning-tree status
+ logging event GrzmwDbKIVBLZ
+ logging event M6M9lsFZLFTg
+ eUnIlRYUvlavp broadcast level 1.00
+ spanning-tree Hs8r1Hmbzh enable
+ spanning-tree cost 10
+!
+interface GigabitEthernet4/15
+ description  REMOVED
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport trunk allowed vlan 3543,3551,3569,3573,3575,3587,3589,3595,3607
+ switchport trunk allowed vlan add 3615,3649,3667,3885
+ switchport mode trunk
+ no ip address
+ logging event spanning-tree status
+ logging event GrzmwDbKIVBLZ
+ logging event M6M9lsFZLFTg
+ eUnIlRYUvlavp broadcast level 1.00
+ spanning-tree Hs8r1Hmbzh enable
+ spanning-tree cost 10
+!
+interface GigabitEthernet4/16
+ description  REMOVED
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport trunk allowed vlan 3542,3550,3568,3572,3574,3586,3588,3594,3606
+ switchport trunk allowed vlan add 3614,3648,3666,3884
+ switchport mode trunk
+ no ip address
+ logging event spanning-tree status
+ logging event GrzmwDbKIVBLZ
+ logging event M6M9lsFZLFTg
+ eUnIlRYUvlavp broadcast level 1.00
+ spanning-tree Hs8r1Hmbzh enable
+ spanning-tree cost 10
+!
+interface GigabitEthernet5/1
+ no ip address
+ shutdown
+!
+interface GigabitEthernet5/2
+ switchport
+ switchport mode access
+ no ip address
+ logging event spanning-tree status
+ logging event GrzmwDbKIVBLZ
+ logging event M6M9lsFZLFTg
+ shutdown
+ media-type 9TQL45
+ spanning-tree m54tmK003 disable
+!
+interface Vlan1
+ no ip address
+ shutdown
+!
+interface Vlan2
+ description  REMOVED
+ ip address 179.46.115.226 255.255.255.224
+ ip verify unicast source wHHXeUXKL77rV rx NyifrApZ1nZW64N
+ ip helper-address 179.46.170.104
+ no ip redirects
+ no ip proxy-arp
+ ip pim dr-priority 4294967294
+ ip pim sparse-mode
+ ip route-cache flow
+ standby ip 179.46.115.225
+ standby preempt
+ standby authentication vlan2
+!
+interface Vlan52
+ description  REMOVED
+ ip address 164.171.232.130 255.255.255.128
+ ip verify unicast source wHHXeUXKL77rV rx NyifrApZ1nZW64N
+ ip helper-address 179.46.170.104
+ no ip redirects
+ no ip proxy-arp
+ ip pim sparse-mode
+ ip route-cache flow
+ standby ip 164.171.232.129
+ standby preempt
+ standby authentication vlan52
+!
+interface Vlan128
+ description  REMOVED
+ ip address 164.171.239.66 255.255.255.192
+ ip verify unicast source wHHXeUXKL77rV rx NyifrApZ1nZW64N
+ no ip redirects
+ no ip proxy-arp
+ ip route-cache flow
+ standby ip 164.171.239.65
+ standby preempt
+ standby authentication vlan128
+!
+interface Vlan213
+ description  REMOVED
+ ip address 164.171.226.82 255.255.255.240
+ ip verify unicast source wHHXeUXKL77rV rx NyifrApZ1nZW64N
+ ip helper-address 179.46.170.104
+ no ip redirects
+ no ip proxy-arp
+ ip pim dr-priority 4294967294
+ ip pim sparse-mode
+ ip route-cache flow
+ standby ip 164.171.226.81
+ standby preempt
+ standby authentication vlan213
+!
+interface Vlan278
+ description  REMOVED
+ ip address 179.46.101.242 255.255.255.240
+ ip verify unicast source wHHXeUXKL77rV rx NyifrApZ1nZW64N
+ ip helper-address 164.171.52.137
+ no ip redirects
+ no ip proxy-arp
+ ip pim sparse-mode
+ ip route-cache flow
+ standby ip 179.46.101.241
+ standby preempt
+ standby authentication vlan278
+!
+interface Vlan328
+ description  REMOVED
+ ip address 179.46.141.130 255.255.255.192
+ ip verify unicast source wHHXeUXKL77rV rx NyifrApZ1nZW64N
+ no ip redirects
+ no ip proxy-arp
+ ip route-cache flow
+ standby ip 179.46.141.129
+ standby preempt
+ standby authentication vlan328
+!
+interface Vlan406
+ description  REMOVED
+ ip address 179.46.233.130 255.255.255.192
+ ip verify unicast source wHHXeUXKL77rV rx NyifrApZ1nZW64N
+ no ip redirects
+ no ip proxy-arp
+ ip pim dr-priority 4294967294
+ ip pim sparse-mode
+ ip route-cache flow
+ standby ip 179.46.233.129
+ standby preempt
+ standby authentication vlan406
+!
+interface Vlan407
+ description  REMOVED
+ ip address 179.46.216.2 255.255.254.0
+ ip verify unicast source wHHXeUXKL77rV rx NyifrApZ1nZW64N
+ no ip redirects
+ no ip proxy-arp
+ ip pim dr-priority 4294967294
+ ip pim sparse-mode
+ ip route-cache flow
+ standby ip 179.46.216.1
+ standby preempt
+ standby authentication vlan407
+!
+interface Vlan444
+ description  REMOVED
+ ip address 176.144.163.85 255.255.255.252
+ no ip redirects
+ no ip proxy-arp
+ ip pim sparse-mode
+ ip rip advertise 10
+ ip route-cache flow
+!
+interface Vlan529
+ description  REMOVED
+ ip address 179.46.223.2 255.255.255.128
+ ip verify unicast source wHHXeUXKL77rV rx NyifrApZ1nZW64N
+ no ip redirects
+ no ip proxy-arp
+ ip route-cache flow
+ standby ip 179.46.223.1
+ standby preempt
+ standby authentication C+7
+!
+interface Vlan531
+ description  REMOVED
+ ip address 164.171.24.2 255.255.255.240
+ ip verify unicast source wHHXeUXKL77rV rx NyifrApZ1nZW64N
+ ip helper-address 179.46.170.104
+ no ip redirects
+ no ip proxy-arp
+ ip pim sparse-mode
+ ip route-cache flow
+ standby ip 164.171.24.1
+ standby preempt
+ standby authentication vlan531
+!
+interface Vlan668
+ description  REMOVED
+ ip address 179.46.235.2 255.255.255.128
+ ip verify unicast source wHHXeUXKL77rV rx NyifrApZ1nZW64N
+ no ip redirects
+ no ip proxy-arp
+ ip pim sparse-mode
+ ip route-cache flow
+ standby ip 179.46.235.1
+ standby preempt
+ standby authentication C+7
+!
+interface Vlan670
+ description  REMOVED
+ ip address 179.46.246.66 255.255.255.192
+ ip verify unicast source wHHXeUXKL77rV rx NyifrApZ1nZW64N
+ no ip redirects
+ no ip proxy-arp
+ ip pim sparse-mode
+ ip route-cache flow
+ standby ip 179.46.246.65
+ standby preempt
+ standby authentication C+7
+!
+interface Vlan671
+ description  REMOVED
+ ip address 164.171.250.162 255.255.255.224 secondary
+ ip address 179.46.218.66 255.255.255.224
+ ip verify unicast source wHHXeUXKL77rV rx NyifrApZ1nZW64N
+ ip helper-address 179.46.170.104
+ no ip redirects
+ no ip proxy-arp
+ ip pim dr-priority 4294967294
+ ip pim sparse-mode
+ ip route-cache flow
+ standby ip 179.46.218.65
+ standby ip 164.171.250.161 secondary
+ standby preempt
+ standby authentication vlan671
+!
+interface Vlan674
+ description  REMOVED
+ ip address 179.46.91.178 255.255.255.240
+ ip verify unicast source wHHXeUXKL77rV rx NyifrApZ1nZW64N
+ ip helper-address 164.171.52.137
+ no ip redirects
+ no ip proxy-arp
+ ip pim sparse-mode
+ ip route-cache flow
+ standby ip 179.46.91.177
+ standby preempt
+ standby authentication C+7
+!
+interface Vlan699
+ description  REMOVED
+ ip address 179.46.108.2 255.255.255.0
+ ip verify unicast source wHHXeUXKL77rV rx NyifrApZ1nZW64N
+ no ip redirects
+ no ip proxy-arp
+ ip pim dr-priority 4294967294
+ ip pim sparse-mode
+ ip route-cache flow
+ standby ip 179.46.108.1
+ standby preempt
+ standby authentication vlan699
+!
+interface Vlan724
+ description  REMOVED
+ ip address 179.46.189.194 255.255.255.192
+ ip verify unicast source wHHXeUXKL77rV rx NyifrApZ1nZW64N
+ ip helper-address 164.171.52.137
+ no ip redirects
+ no ip proxy-arp
+ ip pim sparse-mode
+ ip route-cache flow
+ standby ip 179.46.189.193
+ standby preempt
+ standby authentication C+7
+!
+interface Vlan750
+ description  REMOVED
+ ip address 179.46.103.130 255.255.255.192
+ ip verify unicast source wHHXeUXKL77rV rx NyifrApZ1nZW64N
+ ip helper-address 179.46.170.104
+ no ip redirects
+ no ip proxy-arp
+ ip pim sparse-mode
+ standby ip 179.46.103.129
+ standby preempt
+ standby authentication C+7
+!
+interface Vlan752
+ description  REMOVED
+ ip address 179.46.105.129 255.255.255.128 secondary
+ ip address 179.46.5.1 255.255.255.0
+ ip verify unicast source wHHXeUXKL77rV rx NyifrApZ1nZW64N
+ no ip redirects
+ no ip proxy-arp
+ ip route-cache flow
+!
+interface Vlan787
+ description  REMOVED
+ ip address 179.46.174.66 255.255.255.224
+ ip verify unicast source wHHXeUXKL77rV rx NyifrApZ1nZW64N
+ ip helper-address 164.171.52.137
+ no ip redirects
+ no ip proxy-arp
+ ip pim sparse-mode
+ standby ip 179.46.174.65
+ standby preempt
+ standby authentication C+7
+!
+interface Vlan788
+ description  REMOVED
+ ip address 179.46.191.2 255.255.255.224
+ ip verify unicast source wHHXeUXKL77rV rx NyifrApZ1nZW64N
+ ip helper-address 164.171.52.137
+ no ip redirects
+ no ip proxy-arp
+ ip pim sparse-mode
+ standby ip 179.46.191.1
+ standby preempt
+ standby authentication C+7
+!
+interface Vlan789
+ description  REMOVED
+ ip address 179.46.103.194 255.255.255.192
+ ip verify unicast source wHHXeUXKL77rV rx NyifrApZ1nZW64N
+ ip helper-address 179.46.170.104
+ no ip redirects
+ no ip proxy-arp
+ ip pim sparse-mode
+ standby ip 179.46.103.193
+ standby preempt
+ standby authentication C+7
+!
+interface Vlan856
+ description  REMOVED
+ ip address 164.171.225.242 255.255.255.240
+ ip verify unicast source wHHXeUXKL77rV rx NyifrApZ1nZW64N
+ ip helper-address 179.46.170.104
+ no ip redirects
+ no ip proxy-arp
+ ip pim dr-priority 4294967294
+ ip pim sparse-mode
+ ip route-cache flow
+ standby ip 164.171.225.241
+ standby preempt
+ standby authentication vlan856
+!
+interface Vlan884
+ description  REMOVED
+ ip address 179.46.52.2 255.255.255.0
+ ip verify unicast source wHHXeUXKL77rV rx NyifrApZ1nZW64N
+ ip helper-address 179.46.170.104
+ no ip redirects
+ no ip proxy-arp
+ ip pim sparse-mode
+ standby ip 179.46.52.1
+ standby preempt
+ standby authentication C+7
+!
+interface Vlan891
+ description  REMOVED
+ ip address 179.46.223.130 255.255.255.128
+ ip verify unicast source wHHXeUXKL77rV rx NyifrApZ1nZW64N
+ ip helper-address 179.46.170.104
+ no ip redirects
+ no ip proxy-arp
+ ip pim sparse-mode
+ ip route-cache flow
+ standby ip 179.46.223.129
+ standby preempt
+ standby authentication vlan891
+!
+interface Vlan1104
+ description  REMOVED
+ ip address 176.144.149.226 255.255.255.240
+ ip access-group 110 out
+ ip verify unicast source wHHXeUXKL77rV rx NyifrApZ1nZW64N
+ no ip redirects
+ no ip proxy-arp
+ ip rip advertise 10
+ ip route-cache flow
+ standby ip 176.144.149.225
+ standby preempt
+ standby authentication vlan1104
+!
+interface Vlan1109
+ description  REMOVED
+ ip address 176.144.149.242 255.255.255.240
+ ip verify unicast source wHHXeUXKL77rV rx NyifrApZ1nZW64N
+ no ip redirects
+ no ip proxy-arp
+ ip rip advertise 10
+ ip route-cache flow
+ standby ip 176.144.149.241
+ standby preempt
+ standby authentication vlan1109
+!
+interface Vlan1121
+ description  REMOVED
+ ip address 176.144.149.50 255.255.255.240
+ ip access-group 110 out
+ ip verify unicast source wHHXeUXKL77rV rx NyifrApZ1nZW64N
+ no ip redirects
+ no ip proxy-arp
+ ip rip advertise 10
+ ip route-cache flow
+ standby ip 176.144.149.49
+ standby preempt
+ standby authentication vlan1121
+!
+interface Vlan1289
+ description  REMOVED
+ ip address 176.144.148.146 255.255.255.240
+ ip access-group 110 out
+ ip verify unicast source wHHXeUXKL77rV rx NyifrApZ1nZW64N
+ no ip redirects
+ no ip proxy-arp
+ ip pim sparse-mode
+ ip rip advertise 10
+ ip route-cache flow
+ standby ip 176.144.148.145
+ standby preempt
+ standby authentication vlan1289
+!
+interface Vlan1526
+ description  REMOVED
+ mtu 9216
+ ip address 176.144.172.186 255.255.255.252
+ no ip redirects
+ no ip proxy-arp
+ ip pim sparse-mode
+ ip rip advertise 10
+ ip route-cache flow
+!
+interface Vlan1527
+ description  REMOVED
+ mtu 9216
+ ip address 176.144.172.169 255.255.255.252
+ no ip redirects
+ no ip proxy-arp
+ ip pim sparse-mode
+ ip rip advertise 10
+ ip route-cache flow
+!
+interface Vlan1580
+ description  REMOVED
+ ip address 176.144.167.13 255.255.255.252
+ ip rip advertise 10
+!
+interface Vlan1595
+ description  REMOVED
+ ip address 176.144.173.21 255.255.255.252
+ no ip redirects
+ no ip proxy-arp
+ ip rip advertise 10
+ ip route-cache flow
+!
+interface Vlan1628
+ description  REMOVED
+ ip address 176.144.165.113 255.255.255.252
+ no ip redirects
+ no ip proxy-arp
+ ip rip advertise 10
+ ip route-cache flow
+!
+interface Vlan1752
+ ip address 176.144.189.69 255.255.255.252
+ ip rip advertise 10
+!
+interface Vlan1754
+ description  REMOVED
+ ip address 176.144.189.89 255.255.255.252
+ no ip redirects
+ no ip proxy-arp
+ ip rip advertise 10
+ ip route-cache flow
+!
+interface Vlan1794
+ description  REMOVED
+ ip address 176.144.184.1 255.255.255.252
+ ip rip advertise 10
+!
+interface Vlan1806
+ description  REMOVED
+ ip address 176.144.185.141 255.255.255.252
+ ip rip advertise 10
+!
+interface Vlan1831
+ description  REMOVED
+ ip address 176.144.187.145 255.255.255.252
+ ip rip advertise 10
+!
+interface Vlan1843
+ description  REMOVED
+ ip address 176.144.177.89 255.255.255.252
+ no ip redirects
+ no ip proxy-arp
+ ip rip advertise 10
+ ip route-cache flow
+!
+interface Vlan1856
+ description  REMOVED
+ ip address 176.144.186.117 255.255.255.252
+ ip rip advertise 10
+!
+interface Vlan1889
+ ip address 176.144.186.213 255.255.255.252
+ ip rip advertise 10
+!
+interface Vlan1893
+ description  REMOVED
+ ip address 176.144.191.185 255.255.255.252
+ no ip redirects
+ no ip proxy-arp
+ ip rip advertise 10
+ ip route-cache flow
+!
+interface Vlan1976
+ description  REMOVED
+ ip address 176.144.178.33 255.255.255.252
+ no ip redirects
+ no ip proxy-arp
+ ip rip advertise 10
+ ip route-cache flow
+!
+interface Vlan3543
+ description  REMOVED
+ ip address 32.95.54.130 255.255.255.128
+ ip verify unicast source wHHXeUXKL77rV rx NyifrApZ1nZW64N
+ ip helper-address 179.46.170.104
+ no ip redirects
+ no ip proxy-arp
+ ip pim sparse-mode
+ ip route-cache flow
+ standby ip 32.95.54.129
+ standby preempt
+ standby authentication vlan3543
+!
+interface Vlan3551
+ description  REMOVED
+ ip address 32.95.55.130 255.255.255.192
+ ip verify unicast source wHHXeUXKL77rV rx NyifrApZ1nZW64N
+ ip helper-address 179.46.170.104
+ no ip redirects
+ no ip proxy-arp
+ ip pim dr-priority 4294967294
+ ip pim sparse-mode
+ ip route-cache flow
+ standby ip 32.95.55.129
+ standby preempt
+ standby authentication vlan3551
+!
+interface Vlan3569
+ description  REMOVED
+ ip address 32.95.55.2 255.255.255.128
+ ip verify unicast source wHHXeUXKL77rV rx NyifrApZ1nZW64N
+ ip helper-address 179.46.170.104
+ no ip redirects
+ no ip proxy-arp
+ ip pim sparse-mode
+ ip route-cache flow
+ standby ip 32.95.55.1
+ standby preempt
+ standby authentication vlan3569
+!
+interface Vlan3573
+ description  REMOVED
+ ip address 32.95.55.194 255.255.255.224
+ ip verify unicast source wHHXeUXKL77rV rx NyifrApZ1nZW64N
+ ip helper-address 179.46.170.104
+ no ip redirects
+ no ip proxy-arp
+ ip pim sparse-mode
+ ip route-cache flow
+ standby ip 32.95.55.193
+ standby preempt
+ standby authentication vlan3573
+!
+interface Vlan3575
+ description  REMOVED
+ ip address 32.95.54.34 255.255.255.224
+ ip verify unicast source wHHXeUXKL77rV rx NyifrApZ1nZW64N
+ ip helper-address 179.46.170.104
+ no ip redirects
+ no ip proxy-arp
+ ip pim sparse-mode
+ ip route-cache flow
+ standby ip 32.95.54.33
+ standby preempt
+ standby authentication vlan3575
+!
+interface Vlan3587
+ description  REMOVED
+ ip address 32.95.52.2 255.255.255.0
+ ip verify unicast source wHHXeUXKL77rV rx NyifrApZ1nZW64N
+ ip helper-address 179.46.170.104
+ no ip redirects
+ no ip proxy-arp
+ ip pim sparse-mode
+ ip route-cache flow
+ standby ip 32.95.52.1
+ standby preempt
+ standby authentication vlan3587
+!
+interface Vlan3589
+ description  REMOVED
+ ip address 32.95.53.2 255.255.255.0
+ ip verify unicast source wHHXeUXKL77rV rx NyifrApZ1nZW64N
+ ip helper-address 179.46.170.104
+ no ip redirects
+ no ip proxy-arp
+ ip pim sparse-mode
+ ip route-cache flow
+ standby ip 32.95.53.1
+ standby preempt
+ standby authentication vlan3589
+!
+interface Vlan3595
+ description  REMOVED
+ ip address 32.95.48.2 255.255.255.128
+ ip verify unicast source wHHXeUXKL77rV rx NyifrApZ1nZW64N
+ ip helper-address 179.46.170.104
+ no ip redirects
+ no ip proxy-arp
+ ip pim sparse-mode
+ ip route-cache flow
+ standby ip 32.95.48.1
+ standby preempt
+ standby authentication vlan3595
+!
+interface Vlan3607
+ description  REMOVED
+ ip address 32.95.7.2 255.255.255.0
+ ip verify unicast source wHHXeUXKL77rV rx NyifrApZ1nZW64N
+ ip helper-address 179.46.170.104
+ no ip redirects
+ no ip proxy-arp
+ ip pim sparse-mode
+ ip route-cache flow
+ standby ip 32.95.7.1
+ standby preempt
+ standby authentication vlan3607
+!
+interface Vlan3615
+ description  REMOVED
+ ip address 32.95.49.2 255.255.255.0
+ ip verify unicast source wHHXeUXKL77rV rx NyifrApZ1nZW64N
+ ip helper-address 179.46.170.104
+ no ip redirects
+ no ip proxy-arp
+ ip pim sparse-mode
+ ip route-cache flow
+ standby ip 32.95.49.1
+ standby preempt
+ standby authentication vlan3615
+!
+interface Vlan3649
+ description  REMOVED
+ ip address 32.95.48.130 255.255.255.128
+ ip verify unicast source wHHXeUXKL77rV rx NyifrApZ1nZW64N
+ ip helper-address 179.46.170.104
+ no ip redirects
+ no ip proxy-arp
+ ip pim sparse-mode
+ ip route-cache flow
+ standby ip 32.95.48.129
+ standby preempt
+ standby authentication vlan3649
+!
+interface Vlan3667
+ description  REMOVED
+ ip address 32.95.50.2 255.255.255.128
+ ip verify unicast source wHHXeUXKL77rV rx NyifrApZ1nZW64N
+ ip helper-address 179.46.170.104
+ no ip redirects
+ no ip proxy-arp
+ ip pim sparse-mode
+ ip route-cache flow
+ standby ip 32.95.50.1
+ standby preempt
+ standby authentication vlan3667
+!
+interface Vlan3885
+ description  REMOVED
+ ip address 32.95.55.226 255.255.255.224
+ ip verify unicast source wHHXeUXKL77rV rx NyifrApZ1nZW64N
+ ip helper-address 179.46.170.104
+ no ip redirects
+ no ip proxy-arp
+ ip pim sparse-mode
+ ip route-cache flow
+ standby ip 32.95.55.225
+ standby preempt
+ standby authentication vlan3885
+!
+router ospf 10
+ router-id 176.144.168.21
+ log-adjacency-changes
+ area 104 nssa default-information-originate
+ area 104 default-cost 50 
+ redistribute rip subnets
+ passive-interface default
+ no passive-interface Vlan444
+ no passive-interface Vlan1526
+ no passive-interface Vlan1527
+ no passive-interface GigabitEthernet3/12
+ no passive-interface Loopback0
+ network 32.95.7.0 0.0.0.255 area 0
+ network 32.95.55.224 0.0.0.31 area 0
+ network 32.95.55.192 0.0.0.31 area 0
+ network 32.95.55.128 0.0.0.63 area 0
+ network 32.95.55.0 0.0.0.127 area 0
+ network 32.95.54.128 0.0.0.127 area 0
+ network 32.95.54.32 0.0.0.31 area 0
+ network 32.95.52.0 0.0.0.255 area 0
+ network 32.95.53.0 0.0.0.255 area 0
+ network 32.95.48.0 0.0.0.127 area 0
+ network 32.95.48.128 0.0.0.127 area 0
+ network 32.95.49.0 0.0.0.255 area 0
+ network 32.95.50.0 0.0.0.127 area 0
+ network 164.171.24.0 0.0.0.15 area 0
+ network 164.171.239.64 0.0.0.63 area 0
+ network 164.171.232.128 0.0.0.127 area 0
+ network 164.171.225.240 0.0.0.15 area 0
+ network 164.171.226.80 0.0.0.15 area 0
+ network 164.171.250.160 0.0.0.31 area 0
+ network 179.46.5.0 0.0.0.255 area 0
+ network 179.46.52.0 0.0.0.255 area 0
+ network 179.46.71.0 0.0.0.127 area 0
+ network 179.46.91.176 0.0.0.15 area 0
+ network 179.46.105.128 0.0.0.127 area 0
+ network 179.46.108.0 0.0.0.255 area 0
+ network 179.46.101.240 0.0.0.15 area 0
+ network 179.46.103.192 0.0.0.63 area 0
+ network 179.46.103.128 0.0.0.63 area 0
+ network 179.46.115.224 0.0.0.31 area 0
+ network 179.46.233.128 0.0.0.63 area 0
+ network 179.46.235.0 0.0.0.127 area 0
+ network 179.46.246.64 0.0.0.63 area 0
+ network 179.46.218.64 0.0.0.31 area 0
+ network 179.46.216.0 0.0.1.255 area 0
+ network 179.46.223.128 0.0.0.127 area 0
+ network 179.46.223.0 0.0.0.127 area 0
+ network 179.46.141.128 0.0.0.63 area 0
+ network 179.46.191.0 0.0.0.31 area 0
+ network 179.46.189.192 0.0.0.63 area 0
+ network 179.46.174.64 0.0.0.31 area 0
+ network 176.144.148.144 0.0.0.15 area 0
+ network 176.144.149.48 0.0.0.15 area 0
+ network 176.144.149.224 0.0.0.15 area 0
+ network 176.144.149.240 0.0.0.15 area 0
+ network 176.144.168.21 0.0.0.0 area 0
+ network 176.144.172.184 0.0.0.3 area 0
+ network 176.144.172.168 0.0.0.3 area 0
+ network 176.144.163.84 0.0.0.3 area 104
+ network 176.144.186.212 0.0.0.3 area 0
+ distribute-list 1357 in Vlan444
+!
+router rip
+ version 2
+ timers basic 10 30 40 50
+ redistribute ospf 10
+ passive-interface default
+ no passive-interface Vlan1580
+ no passive-interface Vlan1595
+ no passive-interface Vlan1628
+ no passive-interface Vlan1752
+ no passive-interface Vlan1754
+ no passive-interface Vlan1794
+ no passive-interface Vlan1806
+ no passive-interface Vlan1831
+ no passive-interface Vlan1843
+ no passive-interface Vlan1856
+ no passive-interface Vlan1889
+ no passive-interface Vlan1893
+ no passive-interface Vlan1976
+ no passive-interface GigabitEthernet3/12
+ no passive-interface Loopback0
+ network 176.144.0.0
+ default-information originate
+ default-metric 1
+ distribute-list 4 out
+ distribute-list 3 in
+ no auto-summary
+!
+ip classless
+!
+ip flow-export source Loopback0
+ip flow-export version 5
+no ip http server
+ip pim rp-address 179.46.29.196 override
+!
+ip access-list extended bBhWFBqbv4zKKcoR
+ deny   udp any any eq 135
+ deny   udp any any eq netbios-ss
+ deny   udp any any eq 445
+ deny   tcp any any eq 135
+ deny   tcp any any eq 139
+ deny   tcp any any eq 445
+ deny   tcp any any eq lpd
+ deny   udp any any eq 515
+ permit ip any any
+!
+ip radius source-interface Loopback0 
+logging history size 500
+logging history notifications
+logging trap debugging
+logging source-interface Loopback0
+logging 176.144.144.10
+access-list 3 remark  REMOVED
+access-list 3 deny   0.0.0.0
+access-list 3 permit any
+access-list 4 remark  REMOVED
+access-list 4 permit 0.0.0.0
+access-list 4 deny   any
+access-list 5 permit 179.46.98.169
+access-list 5 remark  REMOVED
+access-list 5 permit 201.6.106.9
+access-list 5 permit 179.46.98.38
+access-list 5 remark  REMOVED
+access-list 5 permit 164.171.24.17
+access-list 5 permit 179.46.98.87
+access-list 5 remark  REMOVED
+access-list 5 remark  REMOVED
+access-list 5 remark  REMOVED
+access-list 5 permit 179.46.77.0 0.0.0.255
+access-list 5 remark  REMOVED
+access-list 5 permit 176.144.128.0 0.0.15.255
+access-list 5 remark  REMOVED
+access-list 5 permit 164.171.16.0 0.0.3.255
+access-list 5 remark  REMOVED
+access-list 5 permit 176.144.168.0 0.0.3.255
+access-list 5 remark  REMOVED
+access-list 5 permit 176.144.144.0 0.0.0.255
+access-list 5 remark  REMOVED
+access-list 5 permit 176.144.172.0 0.0.3.255
+access-list 5 permit 176.144.160.0 0.0.7.255
+access-list 5 permit 176.144.188.0 0.0.1.255
+access-list 5 permit 176.144.190.0 0.0.1.255
+access-list 5 permit 176.144.184.0 0.0.3.255
+access-list 5 permit 176.144.176.0 0.0.7.255
+access-list 10 permit 179.46.98.169
+access-list 10 remark  REMOVED
+access-list 10 permit 179.46.192.41
+access-list 10 remark  REMOVED
+access-list 10 permit 201.6.106.9
+access-list 10 permit 179.46.98.38
+access-list 10 permit 164.171.22.22
+access-list 10 remark  REMOVED
+access-list 10 permit 179.46.98.80
+access-list 10 remark  REMOVED
+access-list 10 permit 164.171.24.17
+access-list 10 permit 179.46.98.87
+access-list 10 remark  REMOVED
+access-list 10 remark  REMOVED
+access-list 10 remark  REMOVED
+access-list 10 permit 176.144.128.0 0.0.15.255
+access-list 10 remark  REMOVED
+access-list 10 permit 164.171.16.0 0.0.3.255
+access-list 10 remark  REMOVED
+access-list 10 permit 176.144.147.120 0.0.0.128
+access-list 10 remark  REMOVED
+access-list 10 permit 179.46.77.0 0.0.0.255
+access-list 10 remark  REMOVED
+access-list 10 permit 176.144.144.0 0.0.0.255
+access-list 11 remark  REMOVED
+access-list 11 remark  REMOVED
+access-list 11 deny   any log
+access-list 1357 remark  REMOVED
+access-list 1357 permit 176.144.168.144
+access-list 1357 permit 164.171.2.0 0.0.1.255
+access-list 1357 permit 164.171.8.0 0.0.1.255
+access-list 1357 permit 164.171.10.0 0.0.0.255
+access-list 1357 permit 164.171.11.0 0.0.0.255
+access-list 1357 permit 164.171.12.0 0.0.1.255
+access-list 1357 permit 164.171.20.0 0.0.1.255
+access-list 1357 permit 164.171.102.192 0.0.0.63
+access-list 1357 permit 164.171.70.0 0.0.0.255
+access-list 1357 permit 164.171.233.0 0.0.0.127
+access-list 1357 permit 179.46.7.128 0.0.0.63
+access-list 1357 permit 179.46.7.192 0.0.0.63
+access-list 1357 permit 179.46.62.0 0.0.0.15
+access-list 1357 permit 179.46.46.128 0.0.0.127
+access-list 1357 permit 179.46.110.0 0.0.0.255
+access-list 1357 permit 179.46.237.128 0.0.0.127
+access-list 1357 permit 179.46.249.64 0.0.0.63
+access-list 1357 permit 179.46.153.128 0.0.0.63
+access-list 1357 permit 179.46.182.0 0.0.0.255
+access-list 1357 permit 179.46.177.64 0.0.0.63
+access-list 1357 permit 179.46.184.128 0.0.0.127
+access-list 1357 permit 179.46.174.0 0.0.0.31
+access-list 100 remark  REMOVED
+access-list 100 remark  REMOVED
+access-list 100 remark  REMOVED
+access-list 100 remark  REMOVED
+access-list 100 permit ip 176.144.128.0 0.0.15.255 any
+access-list 100 permit ip 164.171.16.0 0.0.3.255 any
+access-list 100 permit ip 164.171.4.0 0.0.3.255 any
+access-list 100 permit ip 164.171.24.0 0.0.0.255 any
+access-list 100 permit ip host 164.171.172.193 any
+access-list 100 permit ip host 179.46.170.106 any
+access-list 100 permit ip host 201.6.106.9 any
+access-list 100 remark  REMOVED
+access-list 100 permit ip host 179.46.98.38 any
+access-list 100 permit ip host 179.46.98.87 any
+access-list 100 permit ip host 179.46.98.169 any
+access-list 100 remark  REMOVED
+access-list 100 permit ip host 164.171.24.17 any
+access-list 100 remark  REMOVED
+access-list 100 permit ip any host 176.144.144.25
+access-list 100 remark  REMOVED
+access-list 100 permit ip any host 176.144.130.153
+access-list 100 remark  REMOVED
+access-list 100 permit ip any host 176.144.130.154
+access-list 100 remark  REMOVED
+access-list 100 permit ip any host 176.144.130.155
+access-list 100 remark  REMOVED
+access-list 100 permit ip any host 176.144.130.144
+access-list 100 remark  REMOVED
+access-list 100 permit ip any host 176.144.130.146
+access-list 100 remark  REMOVED
+access-list 100 permit ip any host 176.144.144.45
+access-list 100 remark  REMOVED
+access-list 100 permit ip any host 176.144.130.148
+access-list 100 remark  REMOVED
+access-list 100 permit ip any host 176.144.130.150
+access-list 100 remark  REMOVED
+access-list 100 permit ip 164.171.64.0 0.0.0.255 any
+access-list 100 remark  REMOVED
+access-list 100 permit ip 164.171.64.0 0.0.3.255 host 176.144.140.218
+access-list 100 permit ip 164.171.64.0 0.0.3.255 host 176.144.140.219
+access-list 100 remark  REMOVED
+access-list 100 permit ip host 179.46.62.86 any
+access-list 100 permit ip host 179.46.62.80 any
+access-list 100 remark  REMOVED
+access-list 100 permit ip host 179.46.62.106 any
+access-list 100 remark  REMOVED
+access-list 100 permit ip 176.144.137.0 0.0.0.127 any
+access-list 100 remark  REMOVED
+access-list 100 permit ip 176.144.168.0 0.0.3.255 any
+access-list 100 remark  REMOVED
+access-list 100 permit ip 176.144.172.0 0.0.3.255 any
+access-list 100 permit ip 176.144.160.0 0.0.7.255 any
+access-list 100 permit ip 176.144.188.0 0.0.1.255 any
+access-list 100 permit ip 176.144.190.0 0.0.1.255 any
+access-list 100 permit ip 176.144.184.0 0.0.3.255 any
+access-list 100 remark  REMOVED
+access-list 100 permit ip 176.144.144.0 0.0.0.127 any
+access-list 100 remark  REMOVED
+access-list 100 permit ip 176.144.144.128 0.0.0.127 any
+access-list 100 remark  REMOVED
+access-list 100 permit ip host 176.144.144.25 any
+access-list 100 remark  REMOVED
+access-list 100 permit ip host 176.144.144.20 any
+access-list 100 remark  REMOVED
+access-list 100 permit ip host 176.144.144.21 any
+access-list 100 remark  REMOVED
+access-list 100 permit ip 179.46.77.0 0.0.0.255 any
+access-list 100 remark  REMOVED
+access-list 100 permit ip 164.171.30.224 0.0.0.15 any
+access-list 100 permit ip 176.144.146.0 0.0.0.127 any
+access-list 100 permit ip 179.46.91.224 0.0.0.15 any
+access-list 100 permit ip 179.46.91.160 0.0.0.15 any
+access-list 100 permit ip 176.144.148.0 0.0.3.255 any
+access-list 100 remark  REMOVED
+access-list 100 permit ip host 179.46.47.9 any
+access-list 110 remark  REMOVED
+access-list 110 remark  REMOVED
+access-list 110 permit ip 176.144.128.0 0.0.15.255 any
+access-list 110 remark  REMOVED
+access-list 110 permit ip host 164.171.172.193 any
+access-list 110 permit ip host 179.46.170.106 any
+access-list 110 permit ip host 201.6.106.9 any
+access-list 110 remark  REMOVED
+access-list 110 permit ip host 164.171.24.17 any
+access-list 110 remark  REMOVED
+access-list 110 permit ip 176.144.168.0 0.0.3.255 any
+access-list 110 remark  REMOVED
+access-list 110 permit ip 164.171.64.0 0.0.0.255 any
+access-list 110 remark  REMOVED
+access-list 110 permit ip 176.144.172.0 0.0.3.255 any
+access-list 110 permit ip 176.144.160.0 0.0.7.255 any
+access-list 110 permit ip 176.144.188.0 0.0.1.255 any
+access-list 110 permit ip 176.144.190.0 0.0.1.255 any
+access-list 110 permit ip 176.144.184.0 0.0.3.255 any
+access-list 110 permit ip any host 176.144.144.28
+access-list 110 remark  REMOVED
+access-list 110 permit ip 176.144.144.0 0.0.0.127 any
+access-list 110 remark  REMOVED
+access-list 110 permit ip 179.46.77.0 0.0.0.255 any
+access-list 110 remark  REMOVED
+access-list 110 permit ip 176.144.148.0 0.0.3.255 any
+access-list 110 remark  REMOVED
+access-list 110 permit ip host 179.46.98.169 any
+access-list 110 permit ip host 179.46.98.87 any
+access-list 110 permit ip host 179.46.98.80 any
+access-list 110 permit ip host 179.46.98.38 any
+access-list 110 permit ip host 164.171.18.187 any
+access-list 110 remark  REMOVED
+access-list 110 permit ip 164.171.16.0 0.0.3.255 any
+access-list 110 remark  REMOVED
+access-list 110 permit ip host 164.171.22.144 any
+access-list 110 permit ip host 179.46.13.164 any
+access-list 110 permit ip host 179.46.13.166 any
+access-list 110 permit ip host 179.46.13.180 any
+access-list 110 permit ip host 179.46.13.43 any
+access-list 110 permit ip host 179.46.146.100 any
+access-list 110 remark  REMOVED
+access-list 110 permit ip host 179.46.170.98 any
+access-list 110 permit ip host 164.171.172.202 any
+access-list 110 remark  REMOVED
+access-list 110 permit ip host 164.171.22.145 host 176.144.149.133
+access-list 110 remark  REMOVED
+access-list 110 permit ip host 179.46.13.21 any
+access-list 110 permit ip host 179.46.29.46 any
+access-list 110 permit ip host 164.171.25.147 any
+access-list 110 permit ip host 164.170.41.186 any
+access-list 110 permit ip host 164.170.40.63 any
+!
+snmp-server community cDdCSP1xK RO 10
+snmp-server community cDdCSP1xK RW 11
+snmp-server ifindex persist
+snmp-server trap-source Loopback0
+snmp-server contact  REMOVED
+snmp-server chassis-id 7+DQgPHbnPw1MPn51
+snmp-server enable traps snmp authentication linkdown linkup coldstart warmstart
+snmp-server enable traps chassis
+snmp-server enable traps module
+snmp-server enable traps casa
+snmp-server enable traps tty
+snmp-server enable traps ospf state-change
+snmp-server enable traps ospf errors
+snmp-server enable traps ospf retransmit
+snmp-server enable traps ospf lsa
+snmp-server enable traps ospf WBQg08b7LODT82 state-change
+snmp-server enable traps ospf WBQg08b7LODT82 errors
+snmp-server enable traps ospf WBQg08b7LODT82 retransmit
+snmp-server enable traps ospf WBQg08b7LODT82 lsa
+snmp-server enable traps bgp
+snmp-server enable traps dlsw
+snmp-server enable traps frame-relay
+snmp-server enable traps hsrp
+snmp-server enable traps ipmulticast
+snmp-server enable traps MAC-Notification move threshold
+snmp-server enable traps msdp
+snmp-server enable traps pim bGGYOjMLxmI+hpK CbctIC+kbv0bDdQKD PmmnMb9Q7ySZ589JD64
+snmp-server enable traps rf
+snmp-server enable traps rtr
+snmp-server enable traps slb real virtual VrcJ
+snmp-server enable traps bridge X83BopI nd9hiw1HHxY5fi
+snmp-server enable traps tT5n inconsistency ny+XFZusPFt6tvpTvf e4+lmXrLox8BHAPl2v
+snmp-server enable traps syslog
+snmp-server enable traps sonet
+snmp-server enable traps xFSOMDhK
+snmp-server enable traps entity
+snmp-server enable traps rsvp
+snmp-server enable traps kGj agent quota database
+snmp-server enable traps srp
+snmp-server enable traps vtp
+snmp-server enable traps aKPLDjpbt2
+snmp-server enable traps gj4Ozx9dpv
+snmp-server enable traps flash insertion removal
+snmp-server enable traps yqVI7oD FrWvv
+snmp-server enable traps envmon fan shutdown supply temperature status
+snmp-server enable traps mpls traffic-eng
+snmp-server enable traps mpls ldp
+snmp-server enable traps isakmp policy add
+snmp-server enable traps isakmp policy delete
+snmp-server enable traps isakmp tunnel start
+snmp-server enable traps isakmp tunnel stop
+snmp-server enable traps ipsec cryptomap add
+snmp-server enable traps ipsec cryptomap delete
+snmp-server enable traps ipsec cryptomap attach
+snmp-server enable traps ipsec cryptomap detach
+snmp-server enable traps ipsec tunnel start
+snmp-server enable traps ipsec tunnel stop
+snmp-server enable traps ipsec too-many-sas
+snmp-server enable traps mpls vpn
+snmp-server host 164.171.22.22 public 
+snmp-server host 176.144.130.196 public 
+!
+radius-server host 176.144.144.8 auth-port 1812 acct-port 1813
+radius-server dz7HQQH4EqT5 1645-1646
+radius-server key 7 cDdCSP1xK
+!
+oj5icqh1dGpSK
+!
+dial-peer cor custom
+!
+banner motd ^
+ REMOVED 
+
+
+
+
+
+
+
+
+ ^
+!
+line con 0
+ exec-timeout 30 0
+line vty 0 4
+ access-class 5 in
+ exec-timeout 30 0
+line vty 5 24
+ access-class 5 in
+ exec-timeout 30 0
+!
+ntp server 179.46.170.106 source Loopback0 prefer
+ntp server 164.171.172.193 source Loopback0
+ntp server 179.46.29.46
+ntp server 179.46.13.21
+no cns aaa enable
+end
