@@ -7,12 +7,14 @@ import java.io.FilenameFilter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.regex.Pattern;
+import javafx.application.Application;
 
 public class Part1 {
 	public static void main(String[] args) throws IOException {
 		BufferedWriter bw = new BufferedWriter(new FileWriter("results\\parsedConfig.txt"));
 	    ArrayList<Router> routerList = new ArrayList<Router>();
 	    Connections connections = new Connections();
+	    Application.launch(Visualizer.class, args);
 	    
 	    final String path = "files";
 	    File dir = new File(path);
