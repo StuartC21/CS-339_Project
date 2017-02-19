@@ -1,14 +1,11 @@
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
+import javafx.scene.control.Button;
 
-public class RectCell extends Cell {
+public class ButtonCell extends Cell {
 
-    public RectCell( String id) {
+    public ButtonCell( String id) {
         super( id);
-        Rectangle view = new Rectangle( 50,50);
-        view.setStroke(Color.RED);
-        view.setFill(Color.RED);
-        setView( view);
+        Button btn = new Button(id);
+        setView(btn);
 
     }
 

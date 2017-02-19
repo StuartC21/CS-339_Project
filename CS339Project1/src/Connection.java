@@ -4,13 +4,15 @@ public class Connection {
 	String routerB;
 	String interfaceX;
 	String interfaceY;
+	String prefix;
 
-	public Connection(String routerA, String routerB, String interfaceX, String interfaceY) {
+	public Connection(String routerA, String routerB, String interfaceX, String interfaceY, String prefix) {
 		super();
 		this.routerA = routerA;
 		this.routerB = routerB;
 		this.interfaceX = interfaceX;
 		this.interfaceY = interfaceY;
+		this.prefix = prefix;
 	}
 
 	public String getRouterA() {

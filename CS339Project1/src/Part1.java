@@ -10,11 +10,14 @@ import java.util.regex.Pattern;
 import javafx.application.Application;
 
 public class Part1 {
+	static Connections connections = new Connections();
+	static ArrayList<Router> routerList = new ArrayList<Router>();
+	
 	public static void main(String[] args) throws IOException {
 		BufferedWriter bw = new BufferedWriter(new FileWriter("results\\parsedConfig.txt"));
-	    ArrayList<Router> routerList = new ArrayList<Router>();
-	    Connections connections = new Connections();
-	    Application.launch(Visualizer.class, args);
+	    
+	    
+	    
 	    
 	    final String path = "files";
 	    File dir = new File(path);
@@ -27,6 +30,8 @@ public class Part1 {
 		
 		connections = connectingRouters(routerList, connections);
 		connections.print();
+		
+		Application.launch(Visualizer.class, args);
 	}
 
 	private static Connections connectingRouters(ArrayList<Router> routerList,Connections connections) {
@@ -37,7 +42,7 @@ public class Part1 {
 					if (!router.name.equals(routerID.name)){
 						for (InterfaceID interID : routerID.interfaceList){
 							if(inter.prefix.equals(interID.prefix)){
-								connections.connectionList.add(new Connection(router.name, routerID.name, inter.name, interID.name));
+								connections.connectionList.add(new Connection(router.name, routerID.name, inter.name, interID.name, inter.prefix));
 								//System.out.println("RouterA: " + router.name + "  interfaceX: " + inter.name + "  routerB: " + routerID.name + "  interfaceY: "
 								//+ interID.name + "\n");
 							}

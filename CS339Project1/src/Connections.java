@@ -10,9 +10,9 @@ public class Connections {
 		BufferedWriter bw = new BufferedWriter(new FileWriter("results\\connections.txt"));
 		for (Connection conn : connectionList) {
 			bw.write("RouterA: " + conn.routerA + "  interfaceX: " + conn.interfaceX + "  routerB: " + conn.routerB + "  interfaceY: "
-					+ conn.interfaceY + "\n");
+					+ conn.interfaceY + "  Prefix: " + conn.prefix + "\n");
 			System.out.println("RouterA: " + conn.routerA + "  interfaceX: " + conn.interfaceX + "  routerB: " + conn.routerB + "  interfaceY: "
-					+ conn.interfaceY + "\n");
+					+ conn.interfaceY + "  Prefix: " + conn.prefix  + "\n");
 		}
 		bw.close();
 	}

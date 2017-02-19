@@ -74,14 +74,9 @@ public class Model {
 
         switch (type) {
 
-        case RECTANGLE:
-            RectCell rectangleCell = new RectCell(id);
-            addCell(rectangleCell);
-            break;
-
-        case TRIANGLE:
-            TriangleCell circleCell = new TriangleCell(id);
-            addCell(circleCell);
+        case BUTTON:
+            ButtonCell cell = new ButtonCell(id);
+            addCell(cell);
             break;
 
         default:
