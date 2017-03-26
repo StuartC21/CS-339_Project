@@ -84,12 +84,12 @@ public class Model {
             break;
             
         case LABEL3:
-            LabelCell2 labelCell3 = new LabelCell2(id);
+            LabelCell3 labelCell3 = new LabelCell3(id);
             addCell(labelCell3);
             break;
             
         case LABEL4:
-            LabelCell2 labelCell4 = new LabelCell2(id);
+            LabelCell4 labelCell4 = new LabelCell4(id);
             addCell(labelCell4);
             break;
 
