@@ -10,6 +10,13 @@ public class Graph {
 
     private ZoomableScrollPane scrollPane;
 
+    MouseGestures mouseGestures;
+
+    /**
+     * the pane wrapper is necessary or else the scrollpane would always align
+     * the top-most and left-most child to the top and left eg when you drag the
+     * top child down, the entire scrollpane would move down
+     */
     CellLayer cellLayer;
 
     public Graph() {
@@ -20,6 +27,8 @@ public class Graph {
         cellLayer = new CellLayer();
 
         canvas.getChildren().add(cellLayer);
+
+        mouseGestures = new MouseGestures(this);
 
         scrollPane = new ZoomableScrollPane(canvas);
 
@@ -53,6 +62,10 @@ public class Graph {
         getCellLayer().getChildren().removeAll(model.getRemovedCells());
         getCellLayer().getChildren().removeAll(model.getRemovedEdges());
 
+        // enable dragging of cells
+        for (Cell cell : model.getAddedCells()) {
+            mouseGestures.makeDraggable(cell);
+        }
 
         // every cell must have a parent, if it doesn't, then the graphParent is
         // the parent

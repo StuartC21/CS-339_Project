@@ -10,25 +10,8 @@ public class Cell extends Pane {
 
     List<Cell> children = new ArrayList<>();
     List<Cell> parents = new ArrayList<>();
-    double xPost = 0, yPost = 0;
 
-    public double getxPost() {
-		return xPost;
-	}
-
-	public void setxPost(double xPost) {
-		this.xPost = xPost;
-	}
-
-	public double getyPost() {
-		return yPost;
-	}
-
-	public void setyPost(double yPost) {
-		this.yPost = yPost;
-	}
-
-	Node view;
+    Node view;
 
     public Cell(String cellId) {
         this.cellId = cellId;

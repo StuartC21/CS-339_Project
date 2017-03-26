@@ -1,6 +1,5 @@
 public enum CellType {
 
-    BUTTON
-    ;
+    RECTANGLE;
 
 }
