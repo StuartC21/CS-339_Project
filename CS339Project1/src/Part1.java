@@ -12,12 +12,10 @@ import javafx.application.Application;
 public class Part1 {
 	static Connections connections = new Connections();
 	static ArrayList<Router> routerList = new ArrayList<Router>();
+	static ArrayList<EndHost> hostList = new ArrayList<EndHost>();
 	
 	public static void main(String[] args) throws IOException {
 		BufferedWriter bw = new BufferedWriter(new FileWriter("results\\parsedConfig.txt"));
-	    
-	    
-	    
 	    
 	    final String path = "files";
 	    File dir = new File(path);
@@ -75,6 +73,12 @@ public class Part1 {
 				interName = line.substring(10);
 				while(!Pattern.matches("!", line)){	
 					line = br.readLine();
+					if(Pattern.matches("^\\sswitchport\\saccess.*", line)){
+						inter = line.split("\\s");
+						String vlan = inter[3] + inter[4];
+						hostList.add(new EndHost(routerName, vlan, interName));
+						System.out.println("Interface: " + interName + "  Router: " + router + "  vlan: " + vlan + "\n");
+					}
 					if(Pattern.matches("^\\sip\\saddress.*", line)){
 						inter = line.split("\\s");
 						ipAddress = inter[3];
