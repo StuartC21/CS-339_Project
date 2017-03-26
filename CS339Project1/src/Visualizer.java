@@ -12,6 +12,7 @@ public class Visualizer extends Application {
 	public void start(Stage primaryStage) throws Exception{
 		ArrayList<Connection> connectionList = Part1.connections.connectionList;
 		ArrayList<Router> routerList = Part1.routerList;
+		ArrayList<EndHost> hostList = Part1.hostList;
 		
 	       BorderPane root = new BorderPane();
 
@@ -25,18 +26,22 @@ public class Visualizer extends Application {
 	        primaryStage.setScene(scene);
 	        primaryStage.show();
 
-	        addGraphComponents(routerList, connectionList);
+	        addGraphComponents(routerList, connectionList, hostList);
 
 	        Layout layout = new RandomLayout(graph);
 	        layout.execute();
 		
 	}
 	
-	public void addGraphComponents(ArrayList<Router> routerList, ArrayList<Connection> connectionList){
+	public void addGraphComponents(ArrayList<Router> routerList, ArrayList<Connection> connectionList, ArrayList<EndHost> hostList){
 		Model model = graph.getModel();
 		graph.beginUpdate();
 		for(Router router : routerList){
 			model.addCell(router.name, CellType.LABEL );
+		}
+		for(EndHost host : hostList){
+			model.addCell(host.name, CellType.LABEL2);
+			model.addEdge(host.router, host.name);
 		}
 		for( Connection conn : connectionList){
 			model.addEdge(conn.routerA, conn.routerB);
