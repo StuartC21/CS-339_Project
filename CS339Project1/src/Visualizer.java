@@ -41,7 +41,7 @@ public class Visualizer extends Application {
 		}
 		for(EndHost host : hostList){
 			model.addCell(host.name, CellType.LABEL2);
-			model.addEdge(host.router, host.name);
+			model.addEdge(host.router, host.name, null);
 		}
 		for( Connection conn : connectionList){
 			model.addEdge(conn.routerA, conn.routerB, conn.prefix);
