@@ -82,6 +82,16 @@ public class Model {
             LabelCell2 labelCell2 = new LabelCell2(id);
             addCell(labelCell2);
             break;
+            
+        case LABEL3:
+            LabelCell2 labelCell3 = new LabelCell2(id);
+            addCell(labelCell3);
+            break;
+            
+        case LABEL4:
+            LabelCell2 labelCell4 = new LabelCell2(id);
+            addCell(labelCell4);
+            break;
 
         default:
             throw new UnsupportedOperationException("Unsupported type: " + type);

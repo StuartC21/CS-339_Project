@@ -17,7 +17,7 @@ public class Part1 {
 	public static void main(String[] args) throws IOException {
 		BufferedWriter bw = new BufferedWriter(new FileWriter("results\\parsedConfig.txt"));
 	    
-	    final String path = "files";
+	    final String path = "test";
 	    File dir = new File(path);
         FilenameFilter filter = new MyFileFilter();
         File[] files = dir.listFiles(filter);

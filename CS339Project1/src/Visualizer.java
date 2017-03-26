@@ -40,7 +40,15 @@ public class Visualizer extends Application {
 			model.addCell(router.name, CellType.LABEL );
 		}
 		for(EndHost host : hostList){
-			model.addCell(host.name, CellType.LABEL2);
+			CellType type;
+			if(host.vlan.equals("vlan10")){
+				type = CellType.LABEL2;
+			} else if(host.vlan.equals("vlan20")){
+				type = CellType.LABEL3;
+			} else {
+				type = CellType.LABEL4;
+			}
+			model.addCell(host.name, type);
 			model.addEdge(host.router, host.name, null);
 		}
 		for( Connection conn : connectionList){
