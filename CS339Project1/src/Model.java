@@ -96,12 +96,12 @@ public class Model {
 
     }
 
-    public void addEdge( String sourceId, String targetId) {
+    public void addEdge( String sourceId, String targetId, String prefix) {
 
         Cell sourceCell = cellMap.get( sourceId);
         Cell targetCell = cellMap.get( targetId);
 
-        Edge edge = new Edge( sourceCell, targetCell);
+        Edge edge = new Edge( sourceCell, targetCell, prefix);
 
         addedEdges.add( edge);
 

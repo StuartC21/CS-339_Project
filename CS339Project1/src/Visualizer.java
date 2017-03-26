@@ -39,7 +39,7 @@ public class Visualizer extends Application {
 			model.addCell(router.name, CellType.LABEL );
 		}
 		for( Connection conn : connectionList){
-			model.addEdge(conn.routerA, conn.routerB);
+			model.addEdge(conn.routerA, conn.routerB, conn.prefix);
 		}
 		
 		graph.endUpdate();
