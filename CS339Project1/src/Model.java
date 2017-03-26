@@ -73,9 +73,14 @@ public class Model {
 
         switch (type) {
 
-        case RECTANGLE:
-            RectangleCell rectangleCell = new RectangleCell(id);
-            addCell(rectangleCell);
+        case LABEL:
+            LabelCell labelCell = new LabelCell(id);
+            addCell(labelCell);
+            break;
+            
+        case LABEL2:
+            LabelCell2 labelCell2 = new LabelCell2(id);
+            addCell(labelCell2);
             break;
 
         default:

@@ -36,7 +36,7 @@ public class Visualizer extends Application {
 		Model model = graph.getModel();
 		graph.beginUpdate();
 		for(Router router : routerList){
-			model.addCell(router.name, CellType.RECTANGLE );
+			model.addCell(router.name, CellType.LABEL );
 		}
 		for( Connection conn : connectionList){
 			model.addEdge(conn.routerA, conn.routerB);

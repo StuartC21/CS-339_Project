@@ -1,5 +1,5 @@
 public enum CellType {
 
-    RECTANGLE;
+    LABEL, LABEL2;
 
 }
