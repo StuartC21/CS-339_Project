@@ -7,14 +7,14 @@ import java.io.FilenameFilter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.regex.Pattern;
-import javafx.application.Application;
 
 public class Part1 {
-	static Connections connections = new Connections();
-	static ArrayList<Router> routerList = new ArrayList<Router>();
-	static ArrayList<EndHost> hostList = new ArrayList<EndHost>();
+	static ArrayList<Traffic> trafficList = new ArrayList<Traffic>();
 	
 	public static void main(String[] args) throws IOException {
+		
+		
+		
 		BufferedWriter bw = new BufferedWriter(new FileWriter("results\\parsedConfig.txt"));
 	    
 	    final String path = "test";
@@ -22,76 +22,62 @@ public class Part1 {
         FilenameFilter filter = new MyFileFilter();
         File[] files = dir.listFiles(filter);
         for(File f : files){
-        	routerList.add(parse(f, bw));
+        	trafficList.add(parse(f, bw));
         }
 		bw.close();
 		
-		connections = connectingRouters(routerList, connections);
-		connections.print();
-		
-		Application.launch(Visualizer.class, args);
-	}
+}
 
-	private static Connections connectingRouters(ArrayList<Router> routerList,Connections connections) {
-		for(Router router : routerList){
-			for (InterfaceID inter : router.interfaceList){
-				//for every interface check all other interfaces n different routers
-				for(Router routerID : routerList){
-					if (!router.name.equals(routerID.name)){
-						for (InterfaceID interID : routerID.interfaceList){
-							if(inter.prefix.equals(interID.prefix)){
-								connections.connectionList.add(new Connection(router.name, routerID.name, inter.name, interID.name, inter.prefix));
-								//System.out.println("RouterA: " + router.name + "  interfaceX: " + inter.name + "  routerB: " + routerID.name + "  interfaceY: "
-								//+ interID.name + "\n");
-							}
-						}
-					}
-				}
-			}
-		}
-		
-		return connections;
-		
-	}
 
-	private static Router parse(File file, BufferedWriter bw) throws IOException {
-		Router router = new Router();
+	private static Traffic parse(File file, BufferedWriter bw) throws IOException {
+		
+		Traffic traffic = new Traffic();
 		BufferedReader br = new BufferedReader(new FileReader(file));
 		String line = br.readLine();
-		String routerName = "";
-		String[] inter;
-		String interName = "";
-		String ipAddress = "";
-		String ipMask = "";
 		
-		while(!Pattern.matches("^end$", line)){
-			if(Pattern.matches("^hostname\\s.*", line)){
-				routerName = line.substring(9);
-				router.name = routerName;
-			}
-			if(Pattern.matches("^interface.*", line)){
-				interName = line.substring(10);
-				while(!Pattern.matches("!", line)){	
-					line = br.readLine();
-					if(Pattern.matches("^\\sswitchport\\saccess.*", line)){
-						inter = line.split("\\s");
-						String vlan = inter[3] + inter[4];
-						hostList.add(new EndHost(routerName, vlan, interName));
-						System.out.println("Interface: " + interName + "  Router: " + router + "  vlan: " + vlan + "\n");
-					}
-					if(Pattern.matches("^\\sip\\saddress.*", line)){
-						inter = line.split("\\s");
-						ipAddress = inter[3];
-						ipMask = inter[4];
-						router.interfaceList.add(new InterfaceID(interName, ipAddress, ipMask));
-					}
-				}
+		
+		while(!(line == null)){
+			if(Pattern.matches("^No\\..*", line)){
+				line = br.readLine();
+				String[] split = line.split("\\s");
+				split = removeSpace(split);
+				traffic.timeStamp = Float.parseFloat(split[1]);
+				traffic.src = split[2];
+				traffic.dst = split[3];
+				traffic.protocol = split[4];traffic.length = Integer.parseInt(split[5]);
+				traffic.info = split[6];
+				traffic.print();
 			}
 			line = br.readLine();	
 		}
 		br.close();
-		System.out.println("<" + routerName + ">");
-		router.print(bw);
-		return router;
+		
+		
+		return traffic;
+	}
+
+
+	private static String[] removeSpace(String[] split) {
+		int j = 0;
+		for (int i = 0; i < split.length; i++){
+			if(!(split[i].equals(""))){
+				split[j] = split[i];
+				j++;
+			}
+		}
+		split[6] = getInfo(split);;
+		return split;
+		
+	}
+
+
+	private static String getInfo(String[] split) {
+		String info = ""; 
+		int i = 6;
+		while(!(split[i].equals("")) && (i < split.length-1)){
+			info += " " + split[i];
+			i++;
+		}
+		return info;
 	}
 }
