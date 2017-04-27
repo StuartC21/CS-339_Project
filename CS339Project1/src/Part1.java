@@ -7,6 +7,7 @@ import java.io.FilenameFilter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.regex.Pattern;
+import javafx.application.Application;
 
 public class Part1 {
 	static ArrayList<Traffic> trafficList = new ArrayList<Traffic>();
@@ -24,6 +25,7 @@ public class Part1 {
         for(File f : files){
         	trafficList.add(parse(f, bw));
         }
+        Application.launch(Interface.class, args);
 		bw.close();
 		
 }
