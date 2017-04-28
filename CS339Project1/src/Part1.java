@@ -11,6 +11,7 @@ import javafx.application.Application;
 
 public class Part1 {
 	static ArrayList<Traffic> trafficList = new ArrayList<Traffic>();
+	static Traffic traffic = new Traffic();
 	
 	public static void main(String[] args) throws IOException {
 		
@@ -33,7 +34,7 @@ public class Part1 {
 
 	private static Traffic parse(File file, BufferedWriter bw) throws IOException {
 		
-		Traffic traffic = new Traffic();
+		//Traffic traffic = new Traffic();
 		BufferedReader br = new BufferedReader(new FileReader(file));
 		String line = br.readLine();
 		
@@ -81,5 +82,9 @@ public class Part1 {
 			i++;
 		}
 		return info;
+	}
+
+	public static Traffic getTraffic(){
+		return traffic;
 	}
 }
