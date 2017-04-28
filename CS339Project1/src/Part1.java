@@ -6,13 +6,13 @@ import java.io.FileWriter;
 import java.io.FilenameFilter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.regex.Pattern;
 import javafx.application.Application;
 
 public class Part1 {
 	static ArrayList<Traffic> trafficList = new ArrayList<Traffic>();
-	static Traffic traffic = new Traffic();
-	
+		
 	public static void main(String[] args) throws IOException {
 		
 		
@@ -24,7 +24,7 @@ public class Part1 {
         FilenameFilter filter = new MyFileFilter();
         File[] files = dir.listFiles(filter);
         for(File f : files){
-        	trafficList.add(parse(f, bw));
+        	parse(f, bw);
         }
         Application.launch(Interface.class, args);
 		bw.close();
@@ -32,9 +32,9 @@ public class Part1 {
 }
 
 
-	private static Traffic parse(File file, BufferedWriter bw) throws IOException {
+	private static void parse(File file, BufferedWriter bw) throws IOException {
 		
-		//Traffic traffic = new Traffic();
+		
 		BufferedReader br = new BufferedReader(new FileReader(file));
 		String line = br.readLine();
 		
@@ -44,19 +44,21 @@ public class Part1 {
 				line = br.readLine();
 				String[] split = line.split("\\s");
 				split = removeSpace(split);
-				traffic.timeStamp = Float.parseFloat(split[1]);
-				traffic.src = split[2];
-				traffic.dst = split[3];
-				traffic.protocol = split[4];traffic.length = Integer.parseInt(split[5]);
-				traffic.info = split[6];
-				traffic.print();
+				Float timeStamp = Float.parseFloat(split[1]);
+				String src = split[2];
+				String dst = split[3];
+				String protocol = split[4];
+				int length = Integer.parseInt(split[5]);
+				String info = split[6];
+				Traffic traffic = new Traffic(timeStamp, src, dst, protocol, length, info);
+				trafficList.add(traffic);
+				//traffic.print();
 			}
 			line = br.readLine();	
 		}
 		br.close();
 		
 		
-		return traffic;
 	}
 
 
@@ -82,9 +84,5 @@ public class Part1 {
 			i++;
 		}
 		return info;
-	}
-
-	public static Traffic getTraffic(){
-		return traffic;
 	}
 }
