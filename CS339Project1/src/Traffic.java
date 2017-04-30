@@ -1,14 +1,14 @@
 
 public class Traffic {
 	
-	float timeStamp;
+	String timeStamp;
 	String src;
 	String dst;
 	String protocol;
-	int length;
+	String length;
 	String info;
 	
-	public Traffic(float timeStamp, String src, String dst, String protocol, int length, String info) {
+	public Traffic(String timeStamp, String src, String dst, String protocol, String length, String info) {
 		super();
 		this.timeStamp = timeStamp;
 		this.src = src;
@@ -20,10 +20,10 @@ public class Traffic {
 	public void print() {
 		System.out.println(timeStamp + " " + src + " " + dst + " "+ protocol + " "+ length + " " + info + "\n");
 	}
-	public float getTimeStamp() {
+	public String getTimeStamp() {
 		return timeStamp;
 	}
-	public void setTimeStamp(float timeStamp) {
+	public void setTimeStamp(String timeStamp) {
 		this.timeStamp = timeStamp;
 	}
 	public String getSrc() {
@@ -44,10 +44,10 @@ public class Traffic {
 	public void setProtocol(String protocol) {
 		this.protocol = protocol;
 	}
-	public int getLength() {
+	public String getLength() {
 		return length;
 	}
-	public void setLength(int length) {
+	public void setLength(String length) {
 		this.length = length;
 	}
 	public String getInfo() {

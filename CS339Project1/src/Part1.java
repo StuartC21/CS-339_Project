@@ -6,7 +6,6 @@ import java.io.FileWriter;
 import java.io.FilenameFilter;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.regex.Pattern;
 import javafx.application.Application;
 
@@ -44,11 +43,11 @@ public class Part1 {
 				line = br.readLine();
 				String[] split = line.split("\\s");
 				split = removeSpace(split);
-				Float timeStamp = Float.parseFloat(split[1]);
+				String timeStamp = split[1];
 				String src = split[2];
 				String dst = split[3];
 				String protocol = split[4];
-				int length = Integer.parseInt(split[5]);
+				String length = split[5];
 				String info = split[6];
 				Traffic traffic = new Traffic(timeStamp, src, dst, protocol, length, info);
 				trafficList.add(traffic);

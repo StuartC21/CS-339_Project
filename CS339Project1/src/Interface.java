@@ -51,9 +51,7 @@ public class Interface extends Application implements EventHandler<ActionEvent> 
 		
 		table = new TableView<>();
 		table.getColumns().addAll(timeStamp, src, des, protocol, length, info);
-		ObservableList<Traffic> data = getTraffic();
 		table.setItems(getTraffic());
-		data = table.getItems();
 		
 		
 		box.getChildren().addAll(table);
