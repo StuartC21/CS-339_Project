@@ -4,21 +4,20 @@ public class Traffic {
 	String timeStamp;
 	String src;
 	String dst;
-	String protocol;
-	String length;
+	String pro;
+	String len;
 	String info;
 	
-	public Traffic(String timeStamp, String src, String dst, String protocol, String length, String info) {
+	public Traffic(String timeStamp, String src, String dst, String pro, String info) {
 		super();
 		this.timeStamp = timeStamp;
 		this.src = src;
 		this.dst = dst;
-		this.protocol = protocol;
-		this.length = length;
+		this.pro = pro;
 		this.info = info;
 	}
 	public void print() {
-		System.out.println(timeStamp + " " + src + " " + dst + " "+ protocol + " "+ length + " " + info + "\n");
+		System.out.println(timeStamp + " " + src + " " + dst + " "+ pro + " " + info + "\n");
 	}
 	public String getTimeStamp() {
 		return timeStamp;
@@ -38,17 +37,11 @@ public class Traffic {
 	public void setDst(String dst) {
 		this.dst = dst;
 	}
-	public String getProtocol() {
-		return protocol;
+	public String getPro() {
+		return pro;
 	}
-	public void setProtocol(String protocol) {
-		this.protocol = protocol;
-	}
-	public String getLength() {
-		return length;
-	}
-	public void setLength(String length) {
-		this.length = length;
+	public void setPro(String pro) {
+		this.pro = pro;
 	}
 	public String getInfo() {
 		return info;

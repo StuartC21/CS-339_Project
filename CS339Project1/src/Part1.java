@@ -10,11 +10,10 @@ import java.util.regex.Pattern;
 import javafx.application.Application;
 
 public class Part1 {
+	
 	static ArrayList<Traffic> trafficList = new ArrayList<Traffic>();
 		
 	public static void main(String[] args) throws IOException {
-		
-		
 		
 		BufferedWriter bw = new BufferedWriter(new FileWriter("results\\parsedConfig.txt"));
 	    
@@ -33,10 +32,8 @@ public class Part1 {
 
 	private static void parse(File file, BufferedWriter bw) throws IOException {
 		
-		
 		BufferedReader br = new BufferedReader(new FileReader(file));
 		String line = br.readLine();
-		
 		
 		while(!(line == null)){
 			if(Pattern.matches("^No\\..*", line)){
@@ -46,17 +43,15 @@ public class Part1 {
 				String timeStamp = split[1];
 				String src = split[2];
 				String dst = split[3];
-				String protocol = split[4];
-				String length = split[5];
+				String pro = split[4];
 				String info = split[6];
-				Traffic traffic = new Traffic(timeStamp, src, dst, protocol, length, info);
+				Traffic traffic = new Traffic(timeStamp, src, dst, pro, info);
 				trafficList.add(traffic);
-				//traffic.print();
+				traffic.print();
 			}
 			line = br.readLine();	
 		}
 		br.close();
-		
 		
 	}
 
