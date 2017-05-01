@@ -24,8 +24,10 @@ public class Part1 {
         for(File f : files){
         	parse(f, bw);
         }
-        Application.launch(Interface.class, args);
-		bw.close();
+        bw.close();
+        //Application.launch(Interface.class, args);
+        Application.launch(PieChartInterface.class, args);
+		
 		
 }
 

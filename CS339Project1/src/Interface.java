@@ -21,8 +21,10 @@ public class Interface extends Application implements EventHandler<ActionEvent> 
 	Stage window;
 	TableView<Traffic> table;
 	ArrayList<Traffic> trafficList;
+	
 	@SuppressWarnings("unchecked")
 	public void start(Stage primaryStage) throws Exception {
+		
 		trafficList = Part1.trafficList;
 		ObservableList<Traffic> trafficSearchList = FXCollections.observableArrayList(trafficList);
 		window = primaryStage;
